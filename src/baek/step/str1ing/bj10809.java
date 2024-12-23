@@ -18,7 +18,6 @@ public class bj10809 {
         for (int i = 0; i < 26; i++) {
             int count = 0;
             for (int j = 0; j < s.length(); j++) {
-
                 if ((char) (97 + i) == s.charAt(j)) {
                     alp[i] = count;
                 } else {

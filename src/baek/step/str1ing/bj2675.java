@@ -13,7 +13,12 @@ public class bj2675 {
             StringTokenizer st = new StringTokenizer(br.readLine());
             int n = Integer.parseInt(st.nextToken());
             String s = st.nextToken();
-            System.out.println(s.repeat(n));
+            for (int j = 0; j < s.length(); j++) {
+                for (int k = 0; k < n; k++) {
+                    System.out.print(s.charAt(j));
+                }
+            }
+            System.out.println();
         }
 
     }

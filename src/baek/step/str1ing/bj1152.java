@@ -20,5 +20,4 @@ public class bj1152 {
         }
         System.out.println(count);
     }
-
 }
