@@ -16,6 +16,7 @@ public class bj9012 {
         for (int i = 0; i < n; i++) {
             String s = br.readLine();
             checkStack(s, stackInt);
+            stackInt.clear();
         }
 
     }
