@@ -20,9 +20,8 @@ public class bj10773 {
             }
             //System.out.println(zeroStack);
         }
-        if (zeroStack.isEmpty()) {
-            System.out.println(0);
-        } else {
+
+        if (!zeroStack.isEmpty()) {
             for (int i = 0; i < zeroStack.size(); i++) {
                 //System.out.println("zeroStack.search(i) = " + zeroStack.search(i));
                 sum += zeroStack.elementAt(i);
