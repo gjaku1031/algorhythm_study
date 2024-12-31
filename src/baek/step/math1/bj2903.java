@@ -16,6 +16,7 @@ public class bj2903 {
     static int diff(int N) {
         return (int) Math.pow(2, N - 1);
     }
+
     //한변
     static int edge(int N) {
         int sum = 2;

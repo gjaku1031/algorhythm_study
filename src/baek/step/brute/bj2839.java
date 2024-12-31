@@ -26,7 +26,6 @@ public class bj2839 {
             } else {
                 continue;
             }
-
             // y가 음수면 for 문 종료
             if (y < 0) {
                 break;

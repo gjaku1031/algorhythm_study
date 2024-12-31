@@ -16,9 +16,6 @@ public class bj1193 {
             //System.out.println("Odd = " + N);
         }
     }
-
-
-
     // n번째 대각선 줄의 최대 인덱스 찾기
     static int findMax(int n) {
         int max = 1;

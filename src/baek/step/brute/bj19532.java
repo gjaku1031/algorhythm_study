@@ -29,6 +29,5 @@ public class bj19532 {
         }
 
         System.out.println(x + " " + y);
-
     }
 }

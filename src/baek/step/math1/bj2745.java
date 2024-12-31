@@ -40,6 +40,4 @@ public class bj2745 {
             return convertedNum;
         }
     }
-
-
 }

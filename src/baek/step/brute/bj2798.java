@@ -18,9 +18,7 @@ public class bj2798 {
         for (int i = 0; i < N; i++) {
             arr[i] = Integer.parseInt(st1.nextToken());
         }
-
         System.out.println(blackJack(arr, M));
-
     }
 
     static int blackJack(int[] arr, int M) {

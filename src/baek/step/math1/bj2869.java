@@ -12,16 +12,12 @@ public class bj2869 {
         int A = Integer.parseInt(st.nextToken());
         int B = Integer.parseInt(st.nextToken());
         int V = Integer.parseInt(st.nextToken());
-
         if ((V - B) % (A - B) == 0) {
             System.out.println((V - B) / (A - B));
         } else {
             System.out.println((V - B) / (A - B) + 1);
-
         }
-
         bw.flush();
         bw.close();
     }
-
 }

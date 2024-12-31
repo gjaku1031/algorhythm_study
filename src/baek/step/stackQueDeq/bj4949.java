@@ -10,33 +10,39 @@ public class bj4949 {
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        Stack<Integer> stackInt1 = new Stack<>();
-        Stack<Integer> stackInt2 = new Stack<>();
-
-        while (true) {
-            if (true) {
+        String line = "";
+        while ((line = br.readLine()) != null) {
+            if (line.equals(".")) {
+                break;
             }
+            checkStack(line);
         }
     }
 
-    static void checkStack(String s, Stack<Integer> stackInt1, Stack<Integer> stackInt2) {
-        for (int i = 0; i < s.length(); i++) {
-            if (s.charAt(i) == '(') {
-                stackInt1.push(1);
-            } else if (s.charAt(i) == ')' && stackInt1.isEmpty()) {
-                System.out.println("no");
-                return;
-            } else if (s.charAt(i) == ')' && !stackInt1.isEmpty()) {
-                stackInt1.pop();
-            } else if (s.charAt(i)=='[') {
-                stackInt2.push(1);
-            } else if (s.charAt(i) == ']' && stackInt1.isEmpty()) {
-                System.out.println("no");
-            } else if (s.charAt(i) == ']' && !stackInt1.isEmpty()) {
-                stackInt2.pop();
+    static void checkStack(String line) {
+        Stack<Character> stackCh = new Stack<>();
+        for (int i = 0; i < line.length(); i++) {
+            if (line.charAt(i) == '(') {
+                stackCh.push('(');
+            } else if (line.charAt(i) == '[') {
+                stackCh.push('[');
+            } else if (line.charAt(i) == ')') {
+                if (!stackCh.isEmpty() && stackCh.peek() == '(') {
+                    stackCh.pop();
+                } else {
+                    System.out.println("no");
+                    return;
+                }
+            } else if (line.charAt(i) == ']') {
+                if (!stackCh.isEmpty() && stackCh.peek() == '[') {
+                    stackCh.pop();
+                } else {
+                    System.out.println("no");
+                    return;
+                }
             }
         }
-        if (stackInt1.isEmpty()) {
+        if (stackCh.isEmpty()) {
             System.out.println("yes");
         } else {
             System.out.println("no");

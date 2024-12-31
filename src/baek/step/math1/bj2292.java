@@ -18,7 +18,6 @@ public class bj2292 {
                 }
             }
         }
-
     }
 
     //계차
