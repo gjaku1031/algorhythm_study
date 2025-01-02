@@ -14,6 +14,7 @@ public class bj11866 {
         StringTokenizer st = new StringTokenizer(br.readLine());
         int N = Integer.parseInt(st.nextToken());
         int K = Integer.parseInt(st.nextToken());
+
         Josephus josephus = new Josephus(N, K);
         josephus.jose();
         josephus.joseResult();
@@ -24,8 +25,8 @@ public class bj11866 {
         int K;
 
         public Josephus(int n, int k) {
-            N = n;
-            K = k;
+            this.N = n;
+            this.K = k;
         }
 
         int div;
@@ -38,33 +39,46 @@ public class bj11866 {
             }
         }
 
-        void setNewN() {
-            if (que.size() != div) {
+        void setNewDiv() {
+            if (K % que.size() != 0) {
                 div = K % que.size();
+            } else {
+                div = que.size();
             }
         }
 
         void jose() {
+            //que 에 사람 저장
             setQue();
+            int k = 1;
             while (!que.isEmpty()) {
-                setNewN();
+                //System.out.println("현재 K는 " + K + " 현재 que.size 는 " + que.size());
+                //System.out.println("시작 전 que 는 " + que);
+                setNewDiv();
+                //System.out.println(k + "차 jose 시작 현재 div 는 " + div);
+                // 나눌 수 set
+
                 Queue<Integer> preQue = que;
                 Queue<Integer> lateQue = new LinkedList<>();
 
                 // K-1번째 사람까지 pass
                 for (int i = 0; i < div - 1; i++) {
-                    System.out.println(preQue.peek()+"번 사람 이동");
+                    //System.out.println(preQue.peek()+"번 사람 이동");
                     lateQue.add(preQue.poll());
                 }
                 // K번째 사람 제거
-                System.out.println(preQue.peek()+"번 사람 삭제");
+                //System.out.println(preQue.peek()+"번 사람 삭제");
                 result.append(preQue.poll()).append(", ");
                 // 나머지 인원 제거
                 while (!lateQue.isEmpty()) {
-                    System.out.println(preQue.peek()+"번 사람 이동");
+                    //System.out.println(preQue.peek()+"번 사람 이동");
                     preQue.add(lateQue.poll());
                 }
                 que = preQue;
+                //System.out.println(k + "차 jose 끝 현재 que 는 " + que);
+                //System.out.println(k + "차 jose 끝 jose 는 " + result);
+                //System.out.println("--------------------------------------");
+                k++;
             }
         }
 
