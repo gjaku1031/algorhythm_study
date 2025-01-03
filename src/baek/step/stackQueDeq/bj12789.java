@@ -25,19 +25,23 @@ public class bj12789 {
 
     static class Snack {
         int[] arr;
-        int currentIndex = 0;
+        int currentIndex = 1; // 현재 나가야 하는 번호
         Stack<Integer> stack = new Stack<>();
 
+        // 배열로 줄 생성
         public Snack(int[] arr) {
             this.arr = arr;
         }
 
         public void line() {
             for (int i = 0; i < arr.length; i++) {
-                if (currentIndex + 1 == arr[i]) {
+                // 지금 번호랑 (i+1) 번째 번호랑 같으면 나감 -> 지금 번호 +1
+                if (currentIndex == arr[i]) {
                     currentIndex++;
                     System.out.println(arr[i] + "번 간식받음");
-                } else if (!stack.isEmpty() && stack.peek() == currentIndex + 1) {
+
+                // 줄선 맨 앞사람 번호랑 지금 번호가 같음 -> 줄선 맨 앞 사람 나감
+                } else if (!stack.isEmpty() && stack.peek() == currentIndex) {
                     checkStack();
                     i--;
                 } else {
@@ -48,8 +52,9 @@ public class bj12789 {
             }
         }
 
+        // 줄선 맨 앞사람
         public void checkStack() {
-            while (!stack.isEmpty() && currentIndex + 1 == stack.peek()) {
+            while (!stack.isEmpty() && currentIndex == stack.peek()) {
                 System.out.println(stack.peek() + "번 간식 이제야 받으러 감");
                 stack.pop();
                 currentIndex++;
@@ -65,4 +70,3 @@ public class bj12789 {
         }
     }
 }
-

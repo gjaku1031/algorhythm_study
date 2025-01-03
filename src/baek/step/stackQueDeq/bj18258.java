@@ -31,11 +31,13 @@ public class bj18258 {
                 queEx.backQue();
             }
         }
+        queEx.result();
     }
 
     public static class QueEx {
         int prev;
         Queue<Integer> queInt = new LinkedList<>();
+        StringBuilder sb = new StringBuilder();
 
         public void pushQue(int a) {
             queInt.offer(a);
@@ -44,38 +46,47 @@ public class bj18258 {
 
         public void popQue() {
             if (!queInt.isEmpty()) {
-                System.out.println(queInt.poll());
+                sb.append(queInt.poll());
             } else {
-                System.out.println(-1);
+                sb.append(-1);
             }
+            sb.append("\n");
         }
 
         public void sizeQue() {
-            System.out.println(queInt.size());
+            sb.append(queInt.size());
+            sb.append("\n");
         }
 
         public void isQueEmpty() {
             if (queInt.isEmpty()) {
-                System.out.println(1);
+                sb.append(1);
             } else {
-                System.out.println(0);
+                sb.append(0);
             }
+            sb.append("\n");
         }
 
         public void frontQue() {
             if (!queInt.isEmpty()) {
-                System.out.println(queInt.peek());
+                sb.append(queInt.peek());
             } else {
-                System.out.println(-1);
+                sb.append(-1);
             }
+            sb.append("\n");
         }
 
         public void backQue() {
             if (!queInt.isEmpty()) {
-                System.out.println(prev);
+                sb.append(prev);
             } else {
-                System.out.println(-1);
+                sb.append(-1);
             }
+            sb.append("\n");
+        }
+
+        public void result() {
+            System.out.println(sb);
         }
     }
 }

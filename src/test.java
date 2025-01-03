@@ -1,45 +1,65 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Stack;
 import java.util.StringTokenizer;
 
 public class test {
-
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        Stack<Integer> firstLine = new Stack<>();
+        Stack<Integer> waitingLine = new Stack<>();
+
         int N = Integer.parseInt(br.readLine());
-        int[][] hurt = new int[N][N];
-        // 상처 입력
+
+        StringTokenizer st = new StringTokenizer(br.readLine());
+
+        // 줄세우기
         for (int i = 0; i < N; i++) {
-            StringTokenizer st = new StringTokenizer(br.readLine());
-            for (int j = 0; j < N; j++) {
-                hurt[i][j] = Integer.parseInt(st.nextToken());
-            }
+            int value = Integer.parseInt(st.nextToken());
+            firstLine.push(value);
         }
-        System.out.println(maxBandLen(hurt) * maxBandWid(hurt));
+
+        // result 조건
+        if (Dokidoki(firstLine, waitingLine)) {
+            System.out.println("Nice");
+        } else {
+            System.out.println("Sad");
+        }
     }
 
-    static int maxBandWid(int[][] hurt) {
-        int max = 0;
-        for (int i = 0; i < hurt.length; i++) {
-            for (int j = 0; j < hurt.length; j++) {
-                if (hurt[j][i] == 1) {
-                    max = i + 1;
+
+    private static boolean Dokidoki(Stack<Integer> firstLine, Stack<Integer> waitingLine) {
+        int size = firstLine.size();
+        for (int i = 1; i <= size; i++) {
+            if (!waitingLine.isEmpty()) {
+                if (waitingLine.peek() == i) {
+                    waitingLine.pop();
+                    System.out.println("firstLine = " + firstLine);
+                    System.out.println("waitingLine = " + waitingLine);
+                } else {
+                    DokiModule(i, firstLine, waitingLine);
+                    System.out.println("firstLine = " + firstLine);
+                    System.out.println("waitingLine = " + waitingLine);
                 }
+            } else {
+                DokiModule(i, firstLine, waitingLine);
+                System.out.println("firstLine = " + firstLine);
+                System.out.println("waitingLine = " + waitingLine);
             }
         }
-        return max;
+
+        return (waitingLine.isEmpty() && firstLine.isEmpty());
     }
 
-    static int maxBandLen(int[][] hurt) {
-        int max = 0;
-        for (int i = 0; i < hurt.length; i++) {
-            for (int j = 0; j < hurt.length; j++) {
-                if (hurt[i][j] == 1) {
-                    max = i + 1;
-                }
-            }
+    private static void DokiModule(int i, Stack<Integer> firstLine, Stack<Integer> waitingLine) {
+        // firstLine 에서 번호 맞으면 나감
+        if (firstLine.peek() == i) {
+            firstLine.pop();
+        // 아니면 기다리러 감
+        } else {
+            waitingLine.push(firstLine.pop());
         }
-        return max;
     }
 }
