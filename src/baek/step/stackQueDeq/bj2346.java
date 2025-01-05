@@ -13,6 +13,9 @@ public class bj2346 {
         int N = Integer.parseInt(br.readLine());
         StringTokenizer st = new StringTokenizer(br.readLine());
         int[] target = new int[N];
+        for (int i = 0; i < N; i++) {
+            target[i] = Integer.parseInt(st.nextToken());
+        }
         Balloon balloon = new Balloon(N, target);
         balloon.setBalloons();
         balloon.explodeBalloon();
@@ -25,22 +28,52 @@ public class bj2346 {
         int nextTarget;
         StringBuilder sb = new StringBuilder();
 
+        // 생성자
         public Balloon(int n, int[] target) {
             N = n;
             this.target = target;
         }
 
+        // 풍선 세팅하기
         public void setBalloons() {
             for (int i = 1; i <= N; i++) {
                 balloons.addLast(i);
             }
+            //System.out.println("balloons 셋팅됨");
         }
 
+        // 풍선 터뜨리기
         public void explodeBalloon() {
-            // 첫 타겟은 첫 번째 풍선의 쪽지
+            // 첫번째 try
             nextTarget = target[0];
+            //System.out.println("nextTarget = " + nextTarget);
+            sb.append(balloons.getFirst()).append(" ");
+            //System.out.println(balloons.getFirst()+"번 풍선 터짐");
+            //System.out.println("=============================");
             balloons.pollFirst();
 
+            while (balloons.size() > 1) {
+                if (nextTarget > 0) {
+                    for (int i = 0; i < nextTarget - 1; i++) {
+                        balloons.addLast(balloons.pollFirst());
+                    }
+                    nextTarget = target[balloons.getFirst() - 1];
+                    //System.out.println("nextTarget = " + nextTarget);
+                    //System.out.println(balloons.getFirst() + "번 풍선 터짐");
+                    //System.out.println("=============================");
+                    sb.append(balloons.pollFirst()).append(" ");
+                } else {
+                    for (int i = 0; i < Math.abs(nextTarget) - 1; i++) {
+                        balloons.addFirst(balloons.pollLast());
+                    }
+                    nextTarget = target[balloons.getLast() - 1];
+                    //System.out.println("nextTarget = " + nextTarget);
+                    //System.out.println(balloons.getLast() + "번 풍선 터짐");
+                    //System.out.println("=============================");
+                    sb.append(balloons.pollLast()).append(" ");
+                }
+            }
+            sb.append(balloons.getFirst());
             System.out.println(sb);
         }
     }
