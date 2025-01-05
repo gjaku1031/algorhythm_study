@@ -39,17 +39,13 @@ public class bj2346 {
             for (int i = 1; i <= N; i++) {
                 balloons.addLast(i);
             }
-            //System.out.println("balloons 셋팅됨");
         }
 
         // 풍선 터뜨리기
         public void explodeBalloon() {
             // 첫번째 try
             nextTarget = target[0];
-            //System.out.println("nextTarget = " + nextTarget);
             sb.append(balloons.getFirst()).append(" ");
-            //System.out.println(balloons.getFirst()+"번 풍선 터짐");
-            //System.out.println("=============================");
             balloons.pollFirst();
 
             while (balloons.size() > 1) {
@@ -58,18 +54,12 @@ public class bj2346 {
                         balloons.addLast(balloons.pollFirst());
                     }
                     nextTarget = target[balloons.getFirst() - 1];
-                    //System.out.println("nextTarget = " + nextTarget);
-                    //System.out.println(balloons.getFirst() + "번 풍선 터짐");
-                    //System.out.println("=============================");
                     sb.append(balloons.pollFirst()).append(" ");
                 } else {
                     for (int i = 0; i < Math.abs(nextTarget) - 1; i++) {
                         balloons.addFirst(balloons.pollLast());
                     }
                     nextTarget = target[balloons.getLast() - 1];
-                    //System.out.println("nextTarget = " + nextTarget);
-                    //System.out.println(balloons.getLast() + "번 풍선 터짐");
-                    //System.out.println("=============================");
                     sb.append(balloons.pollLast()).append(" ");
                 }
             }
