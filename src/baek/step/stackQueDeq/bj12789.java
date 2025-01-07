@@ -34,6 +34,7 @@ public class bj12789 {
         }
 
         public void line() {
+            // while(true)으로 수정
             for (int i = 0; i < arr.length; i++) {
                 // 지금 번호랑 (i+1) 번째 번호랑 같으면 나감 -> 지금 번호 +1
                 if (currentIndex == arr[i]) {
