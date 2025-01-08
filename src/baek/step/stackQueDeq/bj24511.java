@@ -46,7 +46,6 @@ public class bj24511 {
             sb.append(deque.pollLast()).append(" ");
         }
 
-
         System.out.println(sb);
     }
 }
