@@ -1,4 +1,4 @@
-package baek.setMap;
+package baek.step.setMap;
 
 import java.io.BufferedReader;
 import java.io.IOException;
