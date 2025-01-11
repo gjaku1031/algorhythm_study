@@ -45,6 +45,8 @@ public class bj1260 {
 
         DFS(V);
         System.out.println();
+        visited = new boolean[N + 1];
+        visited[V] = true;
         BFS();
 
     }
