@@ -13,7 +13,6 @@ public class bj11478 {
         HashSet<String> result = new HashSet<>();
         for (int i = 0; i <= S.length(); i++) {
             for (int j = i + 1; j <= S.length(); j++) {
-                //System.out.println(S.substring(i, j));
                 result.add(S.substring(i, j));
             }
         }
