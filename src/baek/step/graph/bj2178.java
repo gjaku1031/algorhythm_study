@@ -12,7 +12,6 @@ public class bj2178 {
     static Deque<Coordinate> deq = new ArrayDeque<>();
     static Coordinate[][] maze;
     static StringTokenizer st;
-    static int count;
     static int N, M;
 
     public static void main(String[] args) throws IOException {
@@ -98,7 +97,6 @@ public class bj2178 {
         int level;
 
 
-
         boolean visited = false;
         boolean path = false;
 
@@ -114,6 +112,7 @@ public class bj2178 {
         public int getY() {
             return y;
         }
+
         public int getLevel() {
             return level;
         }
