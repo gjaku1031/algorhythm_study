@@ -22,12 +22,10 @@ public class bj7785 {
             }
         }
 
-
         LinkedList<String> tempList = new LinkedList<>(set);
         Collections.sort(tempList,Collections.reverseOrder());
         for (String s : tempList) {
             System.out.println(s);
         }
     }
-
 }
