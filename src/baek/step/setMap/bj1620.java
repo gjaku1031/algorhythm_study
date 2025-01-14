@@ -23,6 +23,7 @@ public class bj1620 {
             map1.put(i, str);
             map2.put(str, i);
         }
+
         for (int i = 0; i < M; i++) {
             String input = br.readLine();
             if (isNumeric(input)) {
