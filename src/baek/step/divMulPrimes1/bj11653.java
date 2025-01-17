@@ -1,4 +1,4 @@
-package baek.step.divMulPrimes;
+package baek.step.divMulPrimes1;
 
 import java.io.BufferedReader;
 import java.io.IOException;
