@@ -3,7 +3,6 @@ package baek.step.divMulPrimes2;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Map;
 import java.util.StringTokenizer;
 
 public class bj1934 {
@@ -22,23 +21,11 @@ public class bj1934 {
         }
     }
 
-    static boolean isPrime(int n) {
-        for (int i = 2; i <= Math.sqrt(n); i++) {
-            if (n % i == 0) {
-                return false;
-            }
-        }
-        return true;
-    }
-
     static int GCM() {
         int big = Math.max(a, b);
         int small = Math.min(a, b);
         int temp = 1;
-        for (int i = 2; i <= big; i++) {
-            if (!isPrime(i)) {
-                continue;
-            }
+        for (int i = 2; i <= small; i++) {
             if (big % i == 0 && small % i == 0 && temp < i) {
                 temp = i;
             }
