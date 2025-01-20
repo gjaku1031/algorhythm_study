@@ -7,16 +7,12 @@ import java.io.InputStreamReader;
 public class bj9663 {
     static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     static boolean[][] chess;
-    static int N;
-    static int[] dx = {1, 1, -1, -1};
-    static int[] dy = {-1, 1, 1, -1};
     static int count = 0;
-    static int nextX,nextY;
+    static int N;
 
     public static void main(String[] args) throws IOException {
         N = Integer.parseInt(br.readLine());
         chess = new boolean[N][N];
-
         BTC(0, 0);
         System.out.println(count);
 
@@ -38,6 +34,7 @@ public class bj9663 {
             System.out.println("카운트증가");
             return;
         }
+
         for (int i = 0; i < N; i++) {
             if (noQueen(start, i)) {
                 chess[start][i] = true;
@@ -45,6 +42,7 @@ public class bj9663 {
                 if (start + 1 < N) {
                     BTC(start + 1, depth+1);
                 }
+                chess[start][i] = false;
             }
         }
     }
@@ -55,11 +53,13 @@ public class bj9663 {
                 return false;
             }
         }
+
         for (int i = 0; i < N; i++) {
             if (chess[i][y]) {
                 return false;
             }
         }
+
         for (int i = 1; i < N; i++) { // 1부터 시작해 대각선으로 이동
             if (valid(x - i, y - i) && chess[x - i][y - i]) return false;
             if (valid(x - i, y + i) && chess[x - i][y + i]) return false;
