@@ -20,42 +20,35 @@ public class bj9663 {
 
     static void BTC(int start, int depth) {
         if (depth == N) {
-//            for (int i = 0; i < N; i++) {
-//                for (int j = 0; j < N; j++) {
-//                    if (chess[i][j]) {
-//                        System.out.print("o" + " ");
-//                    } else {
-//                        System.out.print("x" + " ");
-//                    }
-//                }
-//                System.out.println();
-//            }
+/*            for (int i = 0; i < N; i++) {
+                for (int j = 0; j < N; j++) {
+                    if (chess[i][j]) {
+                        System.out.print("o" + " ");
+                    } else {
+                        System.out.print("x" + " ");
+                    }
+                }
+                System.out.println();
+            }*/
             count++;
-            System.out.println("카운트증가");
+            System.out.println("================");
             return;
         }
 
         for (int i = 0; i < N; i++) {
             if (noQueen(start, i)) {
                 chess[start][i] = true;
-                System.out.println("Placed queen at: " + start + ", " + i);
-                if (start + 1 < N) {
-                    BTC(start + 1, depth+1);
-                }
+                //System.out.println("Placed queen at: " + start + ", " + i);
+                BTC(start + 1, depth+1);
                 chess[start][i] = false;
             }
         }
     }
 
+    // 해당 좌표에 퀸을 놓을 수 있는지 여부
     static boolean noQueen(int x, int y) {
-        for (int i = 0; i < N; i++) {
-            if (chess[x][i]) {
-                return false;
-            }
-        }
-
-        for (int i = 0; i < N; i++) {
-            if (chess[i][y]) {
+        for (int i = 0; i < N; i++) { // 가로 세로 검사
+            if (chess[x][i]||chess[i][y]) {
                 return false;
             }
         }
@@ -69,6 +62,7 @@ public class bj9663 {
         return true;
     }
 
+    // 체스판 안에 들어있는지
     static boolean valid(int x, int y) {
         return x >= 0 && y >= 0 && x < N && y < N;
     }
