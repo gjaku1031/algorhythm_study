@@ -25,7 +25,6 @@ public class bj2606 {
             computers[i] = new ArrayList<>();
         }
 
-
         for (int i = 0; i < M; i++) {
             st = new StringTokenizer(br.readLine());
             int a = Integer.parseInt(st.nextToken());
