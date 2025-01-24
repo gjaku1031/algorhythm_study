@@ -3,21 +3,21 @@ package baek.step.backTracking;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.StringTokenizer;
+import java.util.*;
 
 public class bj14889 {
     static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    static Set<Integer> team = new HashSet<>();
+    static int min=Integer.MAX_VALUE;
     static StringTokenizer st;
-    static int totalPlayer;
     static int[][] player;
-    static int[] players;
-    static int sum;
-    static int tempSum;
     static int N;
-    static int min;
+
+
 
     public static void main(String[] args) throws IOException {
         N = Integer.parseInt(br.readLine());
+
         player = new int[N][N];
         for (int i = 0; i < N; i++) {
             st = new StringTokenizer(br.readLine());
@@ -25,34 +25,34 @@ public class bj14889 {
                 player[i][j] = Integer.parseInt(st.nextToken());
             }
         }
-        sum = 0;
-        totalPlayer = (N * N - N) / 2;
-        players = new int[totalPlayer];
-        int count = 0;
-        for (int i = 0; i < N - 1; i++) {
-            for (int j = i + 1; j < N - 1; j++) {
-                int a = player[i][j] + player[j][i];
-                players[count++] = a;
-            }
-        }
-        for (int i = 0; i < totalPlayer; i++) {
-            sum += players[i];
-        }
-        min = sum;
 
-
+        BTC(0, 0);
+        System.out.println(min);
     }
 
     static void BTC(int start, int depth) {
-        if (depth == totalPlayer / 2) {
-            min=Math.min(min,Math.abs())
+        if (depth == N / 2) {
+            int teams1score = 0;
+            int teams2score = 0;
+            for (int i = 0; i < N - 1; i++) {
+                for (int j = i + 1; j < N; j++) {
+                    if (team.contains(i) && team.contains(j)) {
+                        teams1score += player[i][j];
+                        teams1score += player[j][i];
+                    } else if (!team.contains(i) && !team.contains(j)) {
+                        teams2score += player[i][j];
+                        teams2score += player[j][i];
+                    }
+                }
+            }
+            min = Math.min(min, Math.abs(teams1score - teams2score));
             return;
         }
 
-        for (int i = start; i < totalPlayer; i++) {
-            tempSum += players[i];
-            BTC(start + 1, depth);
-            tempSum -= players[i];
+        for (int i = start; i < N; i++) {
+            team.add(i);
+            BTC(i + 1, depth + 1);
+            team.remove(i);
         }
     }
 }
