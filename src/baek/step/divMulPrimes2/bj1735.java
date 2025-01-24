@@ -39,7 +39,6 @@ public class bj1735 {
         y1 /= temp2;
 
         System.out.println((x1 * y2 + x2 * y1) + " " + (y1 * y2));
-
     }
 
     static int Euclidean(int a, int b) {
