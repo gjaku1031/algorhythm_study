@@ -20,25 +20,10 @@ public class bj1735 {
         x2 = Integer.parseInt(st.nextToken());
         y2 = Integer.parseInt(st.nextToken());
 
-
-        // 약분하기
-        int temp1 = Euclidean(x1, y1);
-        int temp2 = Euclidean(x2, y2);
-
-        x1 /= temp1;
-        x2 /= temp2;
-        y1 /= temp1;
-        y2 /= temp2;
-
-        temp1 = Euclidean(x1, y2);
-        temp2 = Euclidean(x2, y1);
-
-        x1 /= temp1;
-        y2 /= temp1;
-        x2 /= temp2;
-        y1 /= temp2;
-
-        System.out.println((x1 * y2 + x2 * y1) + " " + (y1 * y2));
+        int x3 = x1 * y2 + x2 * y1;
+        int y3 = y1 * y2;
+        int n = Euclidean(x3, y3);
+        System.out.println(x3 / n + " " + y3 / n);
     }
 
     static int Euclidean(int a, int b) {
