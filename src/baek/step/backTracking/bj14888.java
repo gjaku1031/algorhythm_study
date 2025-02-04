@@ -79,9 +79,9 @@ public class bj14888 {
     }
 
     static void setOperator() {
-        sb.append("+".repeat(Math.max(0, operator[0])));
-        sb.append("-".repeat(Math.max(0, operator[1])));
-        sb.append("*".repeat(Math.max(0, operator[2])));
-        sb.append("/".repeat(Math.max(0, operator[3])));
+        sb.append("+".repeat(operator[0]));
+        sb.append("-".repeat(operator[1]));
+        sb.append("*".repeat(operator[2]));
+        sb.append("/".repeat(operator[3]));
     }
 }
