@@ -20,25 +20,13 @@ public class bj9663 {
 
     static void BTC(int start, int depth) {
         if (depth == N) {
-/*            for (int i = 0; i < N; i++) {
-                for (int j = 0; j < N; j++) {
-                    if (chess[i][j]) {
-                        System.out.print("o" + " ");
-                    } else {
-                        System.out.print("x" + " ");
-                    }
-                }
-                System.out.println();
-            }*/
             count++;
-            System.out.println("================");
             return;
         }
 
         for (int i = 0; i < N; i++) {
             if (noQueen(start, i)) {
                 chess[start][i] = true;
-                //System.out.println("Placed queen at: " + start + ", " + i);
                 BTC(start + 1, depth+1);
                 chess[start][i] = false;
             }
