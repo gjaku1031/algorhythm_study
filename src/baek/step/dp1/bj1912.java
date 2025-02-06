@@ -26,9 +26,8 @@ public class bj1912 {
             arr[i] = Integer.parseInt(st.nextToken());
         }
 
-        for (int i = 1; i < n; i++) {
-            dp[i] = Math.max(dp[i - 1] + arr[i], arr[i]);
+        for (int i = 0; i < n; i++) {
+
         }
-        System.out.println(dp[n - 1]);
     }
 }
