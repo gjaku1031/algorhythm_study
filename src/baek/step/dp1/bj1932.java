@@ -32,10 +32,16 @@ public class bj1932 {
             }
         }
 
-        //dp 시작
+        // **Case: N == 1일 경우 예외 처리 (바로 출력)**
+        if (N == 1) {
+            System.out.println(tri[0].get(0));
+            return;
+        }
+
+        // dp 초기화
+        dp[0].add(tri[0].get(0));
         dp[1].add(tri[0].get(0) + tri[1].get(0));
         dp[1].add(tri[0].get(0) + tri[1].get(1));
-
 
         for (int i = 2; i < N; i++) {
             for (int j = 0; j < tri[i].size(); j++) {
@@ -49,9 +55,6 @@ public class bj1932 {
                 }
             }
         }
-        Collections.sort(dp[N - 1]);
-        System.out.println(dp[N - 1].getLast());
-
-
+        System.out.println(Collections.max(dp[N - 1]));
     }
 }
