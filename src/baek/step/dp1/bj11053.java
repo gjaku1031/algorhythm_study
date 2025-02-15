@@ -9,24 +9,32 @@ import java.util.StringTokenizer;
 public class bj11053 {
     static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     static StringTokenizer st;
-    static int[] arr;
-    static int[] dp;
+    static int[] arr1;
+    static int[] arr2;
+    static int[][] dp;
     static int max;
     static int N;
+    static int[] result;
 
     public static void main(String[] args) throws IOException {
         N = Integer.parseInt(br.readLine());
-        arr = new int[N + 1];
-        dp = new int[N + 1];
+        arr1 = new int[N + 1];
+        arr2 = new int[N + 1];
+        dp = new int[2][N + 1];
+        result = new int[N + 1];
 
         //=====초기화=====
         st = new StringTokenizer(br.readLine());
         for (int i = 1; i <= N; i++) {
-            arr[i] = Integer.parseInt(st.nextToken());
+            int a=Integer.parseInt(st.nextToken());
+            arr1[i] = a;
+            arr2[N + 1 - i] = a;
         }
 
+
         for (int i = 0; i <= N; i++) {
-            dp[i] = 1;
+            dp[0][i] = 1;
+            dp[1][i] = 1;
         }
         //=====1일때=====
         if (N == 1) {
@@ -36,13 +44,21 @@ public class bj11053 {
 
         for (int i = 2; i <= N; i++) {
             for (int j = 1; j < i; j++) {
-                if (arr[i] > arr[j]) {
-                    dp[i] = Math.max(dp[i], dp[j] + 1);
+                if (arr1[i] > arr1[j]) {
+                    dp[0][i] = Math.max(dp[0][i], dp[0][j] + 1);
+
+                }
+                if (arr2[i] > arr2[j]) {
+                    dp[1][i] = Math.max(dp[1][i], dp[1][j] + 1);
                 }
             }
         }
-        Arrays.sort(dp);
-        System.out.println(dp[N]);
+
+        for (int i = 0; i <= N; i++) {
+            result[i] = dp[0][i] + dp[1][i];
+        }
+        Arrays.sort(result);
+        System.out.println(result[N]);
 
 
 
