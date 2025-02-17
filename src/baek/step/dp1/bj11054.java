@@ -54,6 +54,3 @@ public class bj11054 {
         System.out.println(result[N]);
     }
 }
-
-//1 5 2 1 4 3 4 5 2 1
-//1 2 5 4 3 4 1 2 5 1
