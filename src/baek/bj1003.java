@@ -8,10 +8,16 @@ public class bj1003 {
     static int count_zero;
     static int count_one;
     static StringBuilder sb = new StringBuilder();
+    static int[] fibo = new int[41];
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int T = Integer.parseInt(br.readLine());
+        fibo[0] = 0;
+        fibo[1] = 1;
+        for (int i = 2; i < 41; i++) {
+            fibo[i] = fibo[i - 1] + fibo[i - 2];
+        }
         while (T-- > 0) {
             int a = Integer.parseInt(br.readLine());
             count_zero = 0;
@@ -23,15 +29,13 @@ public class bj1003 {
 
     }
 
-    static int fibonacci(int n) {
+    static void fibonacci(int n) {
         if (n == 0) {
             count_zero++;
-            return 0;
         } else if (n == 1) {
             count_one++;
-            return 1;
         } else {
-            return fibonacci(n - 1) + fibonacci(n - 2);
+            return;
         }
 
     }
