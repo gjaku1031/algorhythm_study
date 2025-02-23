@@ -17,6 +17,6 @@ public class bj1037 {
             list.add(Integer.parseInt(st.nextToken()));
         }
         Collections.sort(list);
-        System.out.println(list.getFirst() * list.getLast());
+        System.out.println(list.get(0) * list.get(list.size()) - 1);
     }
 }
