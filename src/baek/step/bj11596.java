@@ -9,5 +9,4 @@ public class bj11596 {
         }
         return sum;
     }
-
 }
