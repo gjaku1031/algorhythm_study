@@ -1,6 +1,5 @@
 package sw.D1;
 
-import java.util.Scanner;
 import java.util.StringTokenizer;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
