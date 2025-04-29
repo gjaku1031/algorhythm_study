@@ -10,10 +10,8 @@ public class sw13218 {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int T = Integer.parseInt(br.readLine());
         for (int tc = 0; tc < T; tc++) {
-            
+            int N = Integer.parseInt(br.readLine());
+            System.out.println("#" + (tc + 1) + " " + N / 3);
         }
-
-
     }
-    
 }
