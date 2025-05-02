@@ -29,6 +29,7 @@ public class sw1948 {
 
 
         int T = Integer.parseInt(br.readLine());
+
         for (int tc = 1; tc <= T; tc++) {
             st = new StringTokenizer(br.readLine());
             int mon1 = Integer.parseInt(st.nextToken());
