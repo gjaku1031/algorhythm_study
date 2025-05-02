@@ -1,8 +1,8 @@
 package sw.D1;
 
-import java.util.StringTokenizer;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.util.StringTokenizer;
 
 /*
    사용하는 클래스명이 Solution 이어야 하므로, 가급적 Solution.java 를 사용할 것을 권장합니다.

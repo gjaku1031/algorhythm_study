@@ -3,7 +3,6 @@ package baek.step.dp1;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
 
 import static java.lang.Math.max;
 

@@ -3,7 +3,10 @@ package baek;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.*;
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Deque;
+import java.util.StringTokenizer;
 
 public class bj9934 {
     static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
