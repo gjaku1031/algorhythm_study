@@ -38,8 +38,6 @@ public class sw1961 {
                 }
                 System.out.println();
             }
-
         }
-
     }
 }
