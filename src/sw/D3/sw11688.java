@@ -23,6 +23,5 @@ public class sw11688 {
             }
             System.out.println("#" + tc + " " + a + " " + b);
         }
-
     }
 }

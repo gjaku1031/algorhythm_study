@@ -12,12 +12,12 @@ public class bj24416 {
 
     public static void main(String[] args) throws IOException {
         int n = Integer.parseInt(br.readLine());
-        int x = fibo1(n);
         fibo2(n);
         System.out.println(count1 + " " + count2);
 
     }
 
+    //재귀
     static int fibo1(int n) {
 
         if (n == 1 || n == 2) {
@@ -28,6 +28,7 @@ public class bj24416 {
         }
     }
 
+    //DP
     static void fibo2(int n) {
         if (n == 1 || n == 2) {
             return;
