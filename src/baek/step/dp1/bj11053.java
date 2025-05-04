@@ -23,20 +23,19 @@ public class bj11053 {
         dp = new int[2][N + 1];
         result = new int[N + 1];
 
-        //=====초기화=====
+        // =====초기화=====
         st = new StringTokenizer(br.readLine());
         for (int i = 1; i <= N; i++) {
-            int a=Integer.parseInt(st.nextToken());
+            int a = Integer.parseInt(st.nextToken());
             arr1[i] = a;
             arr2[N + 1 - i] = a;
         }
-
 
         for (int i = 0; i <= N; i++) {
             dp[0][i] = 1;
             dp[1][i] = 1;
         }
-        //=====1일때=====
+        // =====1일때=====
         if (N == 1) {
             System.out.println(1);
             return;
@@ -59,9 +58,6 @@ public class bj11053 {
         }
         Arrays.sort(result);
         System.out.println(result[N]);
-
-
-
 
     }
 }

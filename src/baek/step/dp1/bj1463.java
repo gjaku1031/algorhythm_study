@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-
 public class bj1463 {
 
     public static void main(String[] args) throws IOException {
@@ -28,10 +27,9 @@ public class bj1463 {
             }
         }
         System.out.println(count[a]);
-        //10 -> 5 -> 4 -> 2 -> 1
-        //10 -> 5 -> 4  -> 3 ->1
-        //10 -> 9 -> 3 -> 1
-
+        // 10 -> 5 -> 4 -> 2 -> 1
+        // 10 -> 5 -> 4 -> 3 ->1
+        // 10 -> 9 -> 3 -> 1
 
     }
 

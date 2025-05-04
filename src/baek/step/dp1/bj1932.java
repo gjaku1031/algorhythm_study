@@ -17,6 +17,7 @@ public class bj1932 {
 
     public static void main(String[] args) throws IOException {
         N = Integer.parseInt(br.readLine());
+
         tri = new ArrayList[N];
         dp = new ArrayList[N];
 

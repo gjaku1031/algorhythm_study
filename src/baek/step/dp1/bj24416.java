@@ -9,7 +9,6 @@ public class bj24416 {
     static int count1 = 1;
     static int count2 = 1;
 
-
     public static void main(String[] args) throws IOException {
         int n = Integer.parseInt(br.readLine());
         fibo2(n);
@@ -17,7 +16,7 @@ public class bj24416 {
 
     }
 
-    //재귀
+    // 재귀
     static int fibo1(int n) {
 
         if (n == 1 || n == 2) {
@@ -28,7 +27,7 @@ public class bj24416 {
         }
     }
 
-    //DP
+    // DP
     static void fibo2(int n) {
         if (n == 1 || n == 2) {
             return;
