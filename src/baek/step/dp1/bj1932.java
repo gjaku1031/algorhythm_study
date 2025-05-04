@@ -3,59 +3,54 @@ package baek.step.dp1;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 import java.util.StringTokenizer;
 
 public class bj1932 {
     static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     static StringTokenizer st;
     static int N;
-    static List<Integer>[] tri;
-    static List<Integer>[] dp;
+    static int[][] triangle; // 입력은 여전히 2D 필요
+    static int[] dp; // O(N) 공간 DP 배열
 
     public static void main(String[] args) throws IOException {
         N = Integer.parseInt(br.readLine());
 
-        tri = new ArrayList[N];
-        dp = new ArrayList[N];
+        triangle = new int[N][N];
+        dp = new int[N]; // 이전 행의 최대합 저장용
 
-        for (int i = 0; i < N; i++) {
-            tri[i] = new ArrayList<>();
-            dp[i] = new ArrayList<>();
-        }
-
+        // 입력 받기
         for (int i = 0; i < N; i++) {
             st = new StringTokenizer(br.readLine());
-            while (st.hasMoreTokens()) {
-                tri[i].add(Integer.parseInt(st.nextToken()));
+            for (int j = 0; j <= i; j++) {
+                triangle[i][j] = Integer.parseInt(st.nextToken());
             }
         }
 
-        // **Case: N == 1일 경우 예외 처리 (바로 출력)**
-        if (N == 1) {
-            System.out.println(tri[0].get(0));
-            return;
-        }
+        // 초기값 (첫 번째 행)
+        dp[0] = triangle[0][0];
 
-        // dp 초기화
-        dp[0].add(tri[0].get(0));
-        dp[1].add(tri[0].get(0) + tri[1].get(0));
-        dp[1].add(tri[0].get(0) + tri[1].get(1));
-
-        for (int i = 2; i < N; i++) {
-            for (int j = 0; j < tri[i].size(); j++) {
-                if (j == 0) {
-                    dp[i].add(dp[i - 1].get(0) + tri[i].get(0));
-                } else if (j == tri[i].size() - 1) {
-                    dp[i].add(dp[i - 1].get(dp[i - 1].size() - 1) + tri[i].get(j));
-                } else {
-                    int max = Math.max(dp[i - 1].get(j - 1), dp[i - 1].get(j));
-                    dp[i].add(tri[i].get(j) + max);
+        // DP 계산 (두 번째 행부터)
+        for (int i = 1; i < N; i++) {
+            // 뒤에서부터 계산해야 이전 행의 값이 덮어쓰여지기 전에 사용 가능
+            for (int j = i; j >= 0; j--) {
+                int currentVal = triangle[i][j];
+                if (j == i) { // 오른쪽 끝: 이전 행의 오른쪽 끝(j-1)에서만 옴
+                    dp[j] = dp[j - 1] + currentVal;
+                } else if (j == 0) { // 왼쪽 끝: 이전 행의 왼쪽 끝(j)에서만 옴
+                    dp[j] = dp[j] + currentVal;
+                } else { // 중간: 이전 행의 왼쪽 위(j-1) 또는 바로 위(j) 중 큰 값에서 옴
+                    dp[j] = Math.max(dp[j - 1], dp[j]) + currentVal;
                 }
             }
         }
-        System.out.println(Collections.max(dp[N - 1]));
+
+        // 최종 결과 (dp 배열에 마지막 행의 결과가 저장되어 있음)
+        int maxResult = 0;
+        for (int k = 0; k < N; k++) {
+            maxResult = Math.max(maxResult, dp[k]);
+        }
+        // 또는 Arrays.stream(dp).max().getAsInt(); 사용 가능 (N=0인 경우 주의)
+
+        System.out.println(maxResult);
     }
 }
