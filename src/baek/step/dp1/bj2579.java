@@ -7,15 +7,14 @@ import java.io.InputStreamReader;
 import static java.lang.Math.max;
 
 public class bj2579 {
+
     static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-    static int N;
-    static int[] stair;
-    static int[] dp;
 
     public static void main(String[] args) throws IOException {
-        N = Integer.parseInt(br.readLine());
-        stair = new int[N + 1];
-        dp = new int[N + 1];
+        int N = Integer.parseInt(br.readLine());
+
+        int[] stair = new int[N + 1];
+        int[] dp = new int[N + 1];
 
         for (int i = 1; i <= N; i++) {
             stair[i] = Integer.parseInt(br.readLine());
@@ -38,6 +37,7 @@ public class bj2579 {
             System.out.println(dp[3]);
             return;
         }
+
 
         for (int i = 4; i <= N; i++) {
             dp[i] = max(dp[i - 2], dp[i - 3] + stair[i - 1]) + stair[i];
