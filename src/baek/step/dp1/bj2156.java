@@ -1,10 +1,10 @@
 package baek.step.dp1;
 
+import static java.lang.Math.max;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-
-import static java.lang.Math.max;
 
 public class bj2156 {
     static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -15,7 +15,7 @@ public class bj2156 {
     public static void main(String[] args) throws IOException {
         N = Integer.parseInt(br.readLine());
 
-        grape = new int[N + 1];
+        grape = new int[N + 1]; 
         dp = new int[N + 1];
 
         for (int i = 1; i <= N; i++) {
@@ -33,6 +33,7 @@ public class bj2156 {
             return;
         }
 
+        //i번째 포도주 마시기 vs 안마시기
         for (int i = 3; i <= N; i++) {
             dp[i] = max(dp[i - 1], max(dp[i - 2] + grape[i], dp[i - 3] + grape[i - 1] + grape[i]));
         }
