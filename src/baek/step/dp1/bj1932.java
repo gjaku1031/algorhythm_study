@@ -9,9 +9,9 @@ import java.util.StringTokenizer;
 public class bj1932 {
     static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     static StringTokenizer st;
-    static int N;
     static int[][] triangle;
     static int[] dp;
+    static int N;
 
     public static void main(String[] args) throws IOException {
         N = Integer.parseInt(br.readLine());
@@ -29,7 +29,6 @@ public class bj1932 {
         dp[0] = triangle[0][0];
         
         for (int i = 1; i < N; i++) {
-            // 뒤에서부터 계산해야 이전 행의 값이 덮어쓰여지기 전에 사용 가능
             for (int j = i; j >= 0; j--) {
                 int currentVal = triangle[i][j];
                 if (j == i) {

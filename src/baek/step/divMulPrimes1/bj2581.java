@@ -18,7 +18,7 @@ public class bj2581 {
             if (isPrime(i) && sum == 0 && i != 1) {
                 firstDec = i;
                 sum += i;
-            // 두번째 소수
+                // 두번째 소수
             } else if (isPrime(i) && i != 1) {
                 sum += i;
             }
@@ -32,6 +32,7 @@ public class bj2581 {
         }
 
     }
+
     static boolean isPrime(int n) {
         for (int i = 2; i < n; i++) {
             if (n % i == 0) {
