@@ -32,5 +32,4 @@ public class sw1976 {
             System.out.println("#" + tc + " " + resultHour + " " + resultMin);
         }
     }
-
 }
