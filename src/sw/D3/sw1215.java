@@ -15,7 +15,6 @@ public class sw1215 {
             N = Integer.parseInt(br.readLine());
             count = 0;
 
-            // 글자판 입력
             pal = new char[8][8];
             for (int i = 0; i < 8; i++) {
                 String strInput = br.readLine().trim();
@@ -36,22 +35,22 @@ public class sw1215 {
     static void solve(int r, int c) {
         // 가로
         if (c + N <= 8) {
-            StringBuilder sbHorizontal = new StringBuilder();
+            StringBuilder sb1 = new StringBuilder();
             for (int k = 0; k < N; k++) {
-                sbHorizontal.append(pal[r][c + k]);
+                sb1.append(pal[r][c + k]);
             }
-            if (isPal(sbHorizontal.toString())) {
+            if (isPal(sb1.toString())) {
                 count++;
             }
         }
 
         // 세로
         if (r + N <= 8) {
-            StringBuilder sbVertical = new StringBuilder();
+            StringBuilder sb2 = new StringBuilder();
             for (int k = 0; k < N; k++) {
-                sbVertical.append(pal[r + k][c]);
+                sb2.append(pal[r + k][c]);
             }
-            if (isPal(sbVertical.toString())) {
+            if (isPal(sb2.toString())) {
                 count++;
             }
         }
