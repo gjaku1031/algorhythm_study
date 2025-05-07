@@ -33,6 +33,7 @@ public class bj24444 {
             graph[a].add(b);
             graph[b].add(a);
         }
+        
         for (int i = 1; i <= N; i++) {
             Collections.sort(graph[i]);
         }

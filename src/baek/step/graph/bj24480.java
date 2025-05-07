@@ -42,7 +42,6 @@ public class bj24480 {
         nodeIdx = new int[N + 1];
         visited = new boolean[N + 1];
         visited[R] = true;
-        int now = R;
         DFS(R);
         for (int i = 1; i <= N; i++) {
             System.out.println(nodeIdx[i]);
