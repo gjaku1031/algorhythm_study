@@ -4,129 +4,73 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayDeque;
-import java.util.Deque;
+import java.util.Queue;
 import java.util.StringTokenizer;
 
 public class bj2178 {
     static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-    static Deque<Coordinate> deq = new ArrayDeque<>();
-    static Coordinate[][] maze;
     static StringTokenizer st;
+
+    static int[] dx = {1, 0, -1, 0};
+    static int[] dy = {0, 1, 0, -1};
+
+    static int[][] visited;
+
+    static int[][] maze;
+
     static int N, M;
 
     public static void main(String[] args) throws IOException {
         st = new StringTokenizer(br.readLine());
         N = Integer.parseInt(st.nextToken());
         M = Integer.parseInt(st.nextToken());
-        maze = new Coordinate[N][M];
 
+        maze = new int[N][M];
+        visited = new int[N][M];
+
+    
         for (int i = 0; i < N; i++) {
             String line = br.readLine();
             for (int j = 0; j < M; j++) {
-                maze[i][j] = new Coordinate(i, j);
-                maze[i][j].setPath(Integer.parseInt(Character.toString(line.charAt(j))));
+
+                maze[i][j] = Integer.parseInt(Character.toString(line.charAt(j)));
             }
         }
 
-        deq.addLast(maze[0][0]);
-        maze[0][0].setLevel(1);
-        BFS();
-        System.out.println(maze[N - 1][M - 1].getLevel());
+        System.out.println(BFS());
     }
 
-    static void BFS() {
-        while (!deq.isEmpty()) {
-            Coordinate now = deq.pollFirst();
-            int x = now.getX();
-            int y = now.getY();
+    static int BFS() {
+        Queue<int[]> que = new ArrayDeque<>();
 
-            //오른쪽
-            if (y < M - 1 && !maze[x][y + 1].visited && maze[x][y + 1].path) {
-                Coordinate next = maze[x][y + 1];
-                next.setVisited(true);
-                if (next.getLevel() == 0) {
-                    next.setLevel(now.getLevel() + 1);
-                } else {
-                    next.setLevel(Math.min(next.getLevel(), now.getLevel() + 1));
-                }
-                deq.addLast(next);
-            }
+        que.add(new int[]{0, 0});
+        visited[0][0] = 1;
 
-            //아래쪽
-            if (x < N - 1 && !maze[x + 1][y].visited && maze[x + 1][y].path) {
-                Coordinate next = maze[x + 1][y];
-                next.setVisited(true);
-                if (next.getLevel() == 0) {
-                    next.setLevel(now.getLevel() + 1);
-                } else {
-                    next.setLevel(Math.min(next.getLevel(), now.getLevel() + 1));
-                }
-                deq.addLast(next);
-            }
+        while (!que.isEmpty()) {
+            int[] now = que.poll();
 
-            //왼쪽
-            if (y > 0 && !maze[x][y - 1].visited && maze[x][y - 1].path) {
-                Coordinate next = maze[x][y - 1];
-                next.setVisited(true);
-                if (next.getLevel() == 0) {
-                    next.setLevel(now.getLevel() + 1);
-                } else {
-                    next.setLevel(Math.min(next.getLevel(), now.getLevel() + 1));
+            for (int d = 0; d < 4; d++) {
+                int nx = now[0] + dx[d];
+                int ny = now[1] + dy[d];
+
+                if (nx < 0 || ny < 0 || nx >= N || ny >= M) {
+                    continue;
                 }
 
-                deq.addLast(next);
-            }
-
-            //위쪽
-            if (x > 0 && !maze[x - 1][y].visited && maze[x - 1][y].path) {
-                Coordinate next = maze[x - 1][y];
-                next.setVisited(true);
-                if (next.getLevel() == 0) {
-                    next.setLevel(now.getLevel() + 1);
-                } else {
-                    next.setLevel(Math.min(next.getLevel(), now.getLevel() + 1));
+                if (maze[nx][ny] == 0) {
+                    continue;
                 }
 
-                deq.addLast(next);
+                if (visited[nx][ny] != 0) {
+                    continue;
+                }
+
+                visited[nx][ny] = visited[now[0]][now[1]] + 1;
+
+                que.add(new int[]{nx, ny});
             }
         }
-    }
 
-    static class Coordinate {
-        int x, y;
-        int level;
-
-
-        boolean visited = false;
-        boolean path = false;
-
-        Coordinate(int x, int y) {
-            this.x = x;
-            this.y = y;
-        }
-
-        public int getX() {
-            return x;
-        }
-
-        public int getY() {
-            return y;
-        }
-
-        public int getLevel() {
-            return level;
-        }
-
-        public void setLevel(int level) {
-            this.level = level;
-        }
-
-        public void setVisited(boolean visited) {
-            this.visited = visited;
-        }
-
-        public void setPath(int n) {
-            this.path = n == 1;
-        }
+        return visited[N - 1][M - 1];
     }
 }
