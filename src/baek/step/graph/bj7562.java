@@ -9,8 +9,8 @@ import java.util.StringTokenizer;
 
 public class bj7562 {
     static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-    static int[] dx = {-1,-2,-2,-1,1,2,2,1};
-    static int[] dy = {-2,-1,1,2,2,1,-1,-2};
+    static int[] dx = { -1, -2, -2, -1, 1, 2, 2, 1 };
+    static int[] dy = { -2, -1, 1, 2, 2, 1, -1, -2 };
     static StringTokenizer st;
     static int next_x, next_y;
     static int now_x, now_y;
@@ -50,6 +50,7 @@ public class bj7562 {
             this.locY = locY;
             this.level = level;
         }
+
         public int getLocX() {
             return locX;
         }
