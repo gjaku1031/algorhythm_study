@@ -30,6 +30,7 @@ public class sw959{
                 Bj[i] = Integer.parseInt(st.nextToken());
             }
 
+
             int result = Integer.MIN_VALUE;
 
             int[] shortArr, longArr;
