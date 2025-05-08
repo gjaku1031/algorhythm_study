@@ -14,6 +14,9 @@ public class bj1012 {
     static int[][] cabs;
     static int count;
 
+    static int[] dx = {0, 0, -1, 1};
+    static int[] dy = {-1, 1, 0, 0};
+
 
     public static void main(String[] args) throws IOException {
         T = Integer.parseInt(br.readLine());
@@ -45,32 +48,19 @@ public class bj1012 {
             }
             System.out.println(count);
         }
-
-
     }
-    public static void search(int x, int y) {
-        // 위
-        if (y > 0 && !visited[x][y - 1] && cabs[x][y - 1] == 1) {
-            visited[x][y - 1] = true;
-            search(x, y - 1);
-        }
 
-        // 아래
-        if (y < N - 1 && !visited[x][y + 1] && cabs[x][y + 1] == 1) {
-            visited[x][y + 1] = true;
-            search(x, y + 1);
-        }
+    public static void search(int currentX, int currentY) {
+        for (int i = 0; i < 4; i++) {
+            int nextX = currentX + dx[i];
+            int nextY = currentY + dy[i];
 
-        // 왼쪽
-        if (x > 0 && !visited[x - 1][y] && cabs[x - 1][y] == 1) {
-            visited[x - 1][y] = true;
-            search(x - 1, y);
-        }
-
-        //오른쪽
-        if (x < M - 1 && !visited[x + 1][y] && cabs[x + 1][y] == 1) {
-            visited[x + 1][y] = true;
-            search(x + 1, y);
+            if (nextX >= 0 && nextX < M && nextY >= 0 && nextY < N) {
+                if (cabs[nextX][nextY] == 1 && !visited[nextX][nextY]) {
+                    visited[nextX][nextY] = true;
+                    search(nextX, nextY);
+                }
+            }
         }
     }
 }
