@@ -3,55 +3,52 @@ package sw.D3;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.StringTokenizer;
 
 public class sw1209 {
     static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     static StringTokenizer st;
-    static int N;
 
     public static void main(String[] args) throws NumberFormatException, IOException {
 
         for (int tc = 1; tc <= 10; tc++) {
-            N = Integer.parseInt(br.readLine());
+            br.readLine();  // 안씀..
 
-            //입력
-            int[][] arr = new int[100][100];
+            int result = 0;
+
+            int diag1 = 0;  // 왼 → 오 대각
+            int diag2 = 0;  // 오 → 왼 대각
+
+            int rowSum;
+            int colSum = 0;
+
             for (int i = 0; i < 100; i++) {
                 st = new StringTokenizer(br.readLine());
+
+                rowSum = 0; //i마다 초기화
                 for (int j = 0; j < 100; j++) {
-                    arr[i][j] = Integer.parseInt(st.nextToken());
+                    int num = Integer.parseInt(st.nextToken());
+                    rowSum += num;
+                    if (i == 0) colSum += num;
+                    if (i == j) diag1 += num;
+                    if (i + j == 99) diag2 += num;
                 }
+                result = Math.max(result, rowSum); //일단 행합의 최대
             }
 
-            int[] rows = new int[100];
-            int[] cols = new int[100];
-            int x = 0;
-            int y = 0;
-
-            for (int i = 0; i < 100; i++) {
-                for (int j = 0; j < 100; j++) {
-                    rows[i] += arr[i][j];
-                    cols[i] += arr[j][i];
+            // 열 합
+            for (int j = 0; j < 100; j++) {
+                for (int i = 0; i < 100; i++) {
+                    st = new StringTokenizer(br.readLine());
+                    colSum += Integer.parseInt(st.nextToken());
                 }
+                result = Math.max(result, colSum);
             }
 
-            for (int i = 0; i < 100; i++) {
-                x += arr[i][i];
-                y += arr[i][99 - i];
-            }
+            result = Math.max(result, diag1);
+            result = Math.max(result, diag2);
 
-            Arrays.sort(rows);
-            Arrays.sort(cols);
-
-            int max = Math.max(rows[99], cols[99]);
-            max = Math.max(max, x);
-            max = Math.max(max, y);
-
-            System.out.println("#" + tc + " " + max);
-
+            System.out.println("#" + tc + " " + result);
         }
     }
 }
