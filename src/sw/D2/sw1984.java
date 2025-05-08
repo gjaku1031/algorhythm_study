@@ -25,7 +25,7 @@ public class sw1984 {
                 sum += arr[i];
             }
 
-            System.out.println("#" + tc + " " + Math.round((double)sum / 8));
+            System.out.println("#" + tc + " " + Math.round((double) sum / 8));
         }
     }
 }

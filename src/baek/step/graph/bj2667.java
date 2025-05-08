@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 import java.util.StringTokenizer;
 
 public class bj2667 {
@@ -17,11 +16,16 @@ public class bj2667 {
     static int count;
     static int N;
 
+    static int[] dx = { 0, 0, -1, 1 };
+    static int[] dy = { -1, 1, 0, 0 };
+
     public static void main(String[] args) throws IOException {
         N = Integer.parseInt(br.readLine());
         houses = new int[N][N];
         visited = new boolean[N][N];
         houseNum = new ArrayList<>();
+
+        // 입력
         for (int i = 0; i < N; i++) {
             String line = br.readLine();
             for (int j = 0; j < N; j++) {
@@ -31,9 +35,8 @@ public class bj2667 {
 
         for (int i = 0; i < N; i++) {
             for (int j = 0; j < N; j++) {
-                count = 0;
                 if (houses[i][j] == 1 && !visited[i][j]) {
-                    count++;
+                    count = 1;
                     visited[i][j] = true;
                     search(i, j);
                     houseNum.add(count);
@@ -41,42 +44,26 @@ public class bj2667 {
             }
         }
 
-        // 0만 list 로 생성해서 삭제하기
-        houseNum.removeAll(List.of(0));
         Collections.sort(houseNum);
         System.out.println(houseNum.size());
-        for (Integer i : houseNum) {
-            System.out.println(i);
+        for (Integer num : houseNum) {
+            System.out.println(num);
         }
     }
 
-    public static void search(int x, int y) {
-        // 위
-        if (y > 0 && !visited[x][y - 1] && houses[x][y - 1] == 1) {
-            count++;
-            visited[x][y - 1] = true;
-            search(x, y - 1);
-        }
+    public static void search(int currentX, int currentY) {
+        // 4방향
+        for (int i = 0; i < 4; i++) {
+            int nextX = currentX + dx[i];
+            int nextY = currentY + dy[i];
 
-        // 아래
-        if (y < N - 1 && !visited[x][y + 1] && houses[x][y + 1] == 1) {
-            count++;
-            visited[x][y + 1] = true;
-            search(x, y + 1);
-        }
-
-        // 왼쪽
-        if (x > 0 && !visited[x - 1][y] && houses[x - 1][y] == 1) {
-            count++;
-            visited[x - 1][y] = true;
-            search(x - 1, y);
-        }
-
-        //오른쪽
-        if (x < N - 1 && !visited[x + 1][y] && houses[x + 1][y] == 1) {
-            count++;
-            visited[x + 1][y] = true;
-            search(x + 1, y);
+            if (nextX >= 0 && nextX < N && nextY >= 0 && nextY < N) {
+                if (houses[nextX][nextY] == 1 && !visited[nextX][nextY]) {
+                    visited[nextX][nextY] = true;
+                    count++;
+                    search(nextX, nextY);
+                }
+            }
         }
     }
 }
