@@ -1,21 +1,31 @@
-package baek.step.backTracking;
+package sw.D3;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class bj9663 {
+public class sw2806 {
     static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    static int T;
     static boolean[][] chess;
     static int count = 0;
     static int N;
+    static int[] dx = {1, 1, -1, -1};
+    static int[] dy = {1, -1, -1, 1};
+
 
     public static void main(String[] args) throws IOException {
-        N = Integer.parseInt(br.readLine());
-        chess = new boolean[N][N];
-        BTC(0, 0);
-        System.out.println(count);
+        T = Integer.parseInt(br.readLine());
 
+        for (int tc = 1; tc <= T; tc++) {
+            N = Integer.parseInt(br.readLine());
+            count = 0;
+            chess = new boolean[N][N];
+
+            BTC(0, 0);
+
+            System.out.println("#" + tc + " " + count);
+        }
     }
 
     static void BTC(int start, int depth) {
@@ -33,7 +43,6 @@ public class bj9663 {
         }
     }
 
-    // 해당 좌표에 퀸을 놓을 수 있는지 여부
     static boolean noQueen(int x, int y) {
         for (int i = 0; i < N; i++) { // 가로 세로 검사
             if (chess[x][i] || chess[i][y]) {
@@ -42,15 +51,17 @@ public class bj9663 {
         }
 
         for (int i = 1; i < N; i++) { // 1부터 시작해 대각선으로 이동
-            if (valid(x - i, y - i) && chess[x - i][y - i]) return false;
-            if (valid(x - i, y + i) && chess[x - i][y + i]) return false;
-            if (valid(x + i, y - i) && chess[x + i][y - i]) return false;
-            if (valid(x + i, y + i) && chess[x + i][y + i]) return false;
+            for (int j = 0; j < 4; j++) {
+                int nextX = x + i * dx[j];
+                int nextY = y + i * dy[j];
+                if (valid(nextX, nextY) && chess[nextX][nextY]) {
+                    return false;
+                }
+            }
         }
         return true;
     }
 
-    // 체스판 안에 들어있는지
     static boolean valid(int x, int y) {
         return x >= 0 && y >= 0 && x < N && y < N;
     }
