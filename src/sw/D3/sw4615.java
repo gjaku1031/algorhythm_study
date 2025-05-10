@@ -3,6 +3,7 @@ package sw.D3;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.StringTokenizer;
 
 public class sw4615 {
@@ -26,7 +27,20 @@ public class sw4615 {
             M = Integer.parseInt(st.nextToken());
 
             init();
+            othello();
 
+            int black = 0;
+            int white = 0;
+            for (int i = 0; i < N; i++) {
+                for (int j = 0; j < N; j++) {
+                    if (board[i][j] == 1) {
+                        black++;
+                    } else if (board[i][j] == 2) {
+                        white++;
+                    }
+                }
+            }
+            System.out.println("#" + tc + " " + black + " " + white);
         }
     }
 
@@ -49,20 +63,27 @@ public class sw4615 {
             board[c][r] = color;
 
             for (int j = 0; j < 8; j++) {
-                int nc = c + dc[j];
-                int nr = r + dr[j];
-
+                reverse(dc[j], dr[j]);
             }
         }
     }
 
-    static void reverse(int nc, int nr) {
-        if (valid(nc, nr) && board[nc][nr] + board[c][r] == 3) {
-            int current_c = nc;
-            int current_r = nr;
-            while (true) {
-                if (valid(current_c, current_r)) {
-                    return;
+    static void reverse(int dir_dc, int dir_dr) {
+        ArrayList<int[]> stonesToFlip = new ArrayList<>();
+        int nc = c + dir_dc;
+        int nr = r + dir_dr;
+
+        while (valid(nc, nr) && board[nc][nr] != 0 && board[nc][nr] != color) {
+            stonesToFlip.add(new int[] { nc, nr });
+            nc += dir_dc;
+            nr += dir_dr;
+
+        }
+
+        if (valid(nc, nr) && board[nc][nr] == color) {
+            if (!stonesToFlip.isEmpty()) {
+                for (int[] pos : stonesToFlip) {
+                    board[pos[0]][pos[1]] = color;
                 }
             }
         }
@@ -70,6 +91,6 @@ public class sw4615 {
     }
 
     static boolean valid(int nc, int nr) {
-        return nc >= 0 || nc < N || nr >= 0 || nr < N;
+        return nc >= 0 && nc < N && nr >= 0 && nr < N;
     }
 }
