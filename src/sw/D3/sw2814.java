@@ -60,7 +60,7 @@ public class sw2814 {
         }
     }
 
-    // v: 현재 정점
+    // v: 
     static void DFS(int u, int length) {
         maxLen = max(maxLen, length);
         for (int v : graph[u]) {
