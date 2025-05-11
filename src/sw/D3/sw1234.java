@@ -31,9 +31,7 @@ public class sw1234 {
                     break;
                 }
             }
-
             System.out.println("#" + tc + " " + pwd);
-
         }
     }
 }
