@@ -69,3 +69,4 @@ public class sw2819 {
         return 0 <= nc && nc < 4 && 0 <= nr && nr < 4;
     }
 }
+ 
