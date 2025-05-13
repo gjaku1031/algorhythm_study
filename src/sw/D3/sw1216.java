@@ -19,7 +19,7 @@ public class sw1216 {
 
     public static void main(String[] args) throws IOException {
         for (int tc = 1; tc <= 10; tc++) {
-            br.readLine();
+            int T = Integer.parseInt(br.readLine());
             result = 0;
             board = new char[100][100];
             for (int i = 0; i < 100; i++) {
@@ -47,7 +47,7 @@ public class sw1216 {
 
                 }
             }
-            System.out.println("#" + tc + " " + result);
+            System.out.println("#" + T + " " + result);
         }
     }
 
