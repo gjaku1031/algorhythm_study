@@ -17,6 +17,7 @@ public class bj4153 {
             }
             isRightTri(arr);
         }
+        sc.close();
     }
 
     static void isRightTri(int[] arr) {
