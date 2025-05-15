@@ -15,18 +15,21 @@ public class sw13428 {
             String number = br.readLine();
             char[] digits = number.toCharArray();
 
-            int min = Integer.MAX_VALUE;
-            int max = Integer.MIN_VALUE;
+            int original = Integer.parseInt(number);
+            int min = original;
+            int max = original;
 
             for (int i = 0; i < digits.length - 1; i++) {
                 for (int j = i + 1; j < digits.length; j++) {
+
                     swap(digits, i, j);
+
                     if (digits[0] != '0') {
                         int val = Integer.parseInt(new String(digits));
                         min = Math.min(min, val);
                         max = Math.max(max, val);
                     }
-                    swap(digits, i, j); // 원상복구
+                    swap(digits, i, j); // 백트래킹
                 }
             }
             System.out.println("#" + tc + " " + min + " " + max);
