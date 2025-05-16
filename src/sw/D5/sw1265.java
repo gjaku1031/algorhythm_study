@@ -1,4 +1,4 @@
-package sw.D3;
+package sw.D5;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -24,7 +24,7 @@ public class sw1265 {
             int rest = N % P;
             int[] nums = new int[P];
             for (int i = 0; i < P; i++) {
-                nums[i]=base;
+                nums[i] = base;
             }
 
             for (int i = 0; rest > 0; i++) {
