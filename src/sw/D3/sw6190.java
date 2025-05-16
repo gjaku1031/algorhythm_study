@@ -14,7 +14,7 @@ public class sw6190 {
     static int[] arr;
     static int result;
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException { //메인 로직
         T = Integer.parseInt(br.readLine());
         for (int tc = 1; tc <= T; tc++) {
             N = Integer.parseInt(br.readLine());
@@ -31,7 +31,7 @@ public class sw6190 {
         }
     }
 
-    static void BTC(int level) {
+    static void BTC(int level) { //함수1
         for (int i = 0; i < arr.length - 1; i++) {
             for (int j = i + 1; j < arr.length; j++) {
                 if (isUpper(arr[i] * arr[j])) {
@@ -41,7 +41,7 @@ public class sw6190 {
         }
     }
 
-    static boolean isUpper(int num) {
+    static boolean isUpper(int num) { //함수2
         String strNum = Integer.toString(num);
         for (int i = 0; i < strNum.length() - 1; i++) {
             if (strNum.charAt(i) > strNum.charAt(i + 1)) {
