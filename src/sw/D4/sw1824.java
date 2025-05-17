@@ -10,7 +10,7 @@ public class sw1824 {
     static StringTokenizer st;
     static int T;
 
-    static int C,R;
+    static int C, R;
     static char[][] arr;
 
     //우,하,좌,상
@@ -41,7 +41,5 @@ public class sw1824 {
     static void run() {
         int nc;
         int nr;
-
-
     }
 }
