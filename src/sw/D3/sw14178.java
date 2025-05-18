@@ -25,6 +25,7 @@ public class sw14178 {
                 result = N / range + 1;
             }
             System.out.println("#" + tc + " " + result);
+
         }
     }
 
