@@ -13,9 +13,9 @@ public class sw1824 {
     static int C, R;
     static char[][] arr;
 
-    //우,하,좌,상
-    static int[] dc = {0, -1, 0, 1};
-    static int[] dr = {1, 0, -1, 0};
+    // 우 하 좌 상
+    static int[] dc = {1, 0, -1, 0};
+    static int[] dr = {0, 1, 0, -1};
     static int idx;
 
     public static void main(String[] args) throws IOException {
@@ -32,9 +32,7 @@ public class sw1824 {
                     arr[i][j] = str.charAt(j);
                 }
             }
-
             idx = 0;
-
         }
     }
 
