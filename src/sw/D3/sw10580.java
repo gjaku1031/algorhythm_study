@@ -36,5 +36,4 @@ public class sw10580 {
             System.out.println("#" + tc + " " + result);
         }
     }
-
 }
