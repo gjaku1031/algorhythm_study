@@ -14,7 +14,7 @@ public class sw3431 {
         int T = Integer.parseInt(br.readLine());
 
 
-        for(int tc = 1; tc <= T; tc++) {
+        for (int tc = 1; tc <= T; tc++) {
             st = new StringTokenizer(br.readLine());
             int L = Integer.parseInt(st.nextToken());
             int U = Integer.parseInt(st.nextToken());
