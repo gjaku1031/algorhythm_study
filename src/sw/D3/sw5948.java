@@ -36,8 +36,6 @@ public class sw5948 {
             Collections.sort(list);
 
             System.out.println("#" + tc + " " + list.get(list.size()-5));
-         
-
         }
     }
 

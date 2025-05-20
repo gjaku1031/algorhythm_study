@@ -24,8 +24,8 @@ public class sw3282 {
             N = Integer.parseInt(st.nextToken());
             K = Integer.parseInt(st.nextToken());
 
-            volume = new int[N+1];
-            cost = new int[N+1];
+            volume = new int[N + 1];
+            cost = new int[N + 1];
             dp = new int[K + 1];
 
             for (int i = 1; i <= N; i++) {
@@ -39,7 +39,6 @@ public class sw3282 {
                     dp[j] = Math.max(dp[j], dp[j - volume[i]] + cost[i]);
                 }
             }
-
             Arrays.sort(dp);
             System.out.println("#" + tc + " " + dp[K]);
         }
