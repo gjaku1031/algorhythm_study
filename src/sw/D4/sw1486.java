@@ -12,7 +12,6 @@ public class sw1486 {
 
     static int N, B;
     static int[] stuffs;
-    static int[] dp;
 
     public static void main(String[] args) throws IOException {
         T = Integer.parseInt(br.readLine());
@@ -26,6 +25,11 @@ public class sw1486 {
             for (int i = 0; i < N; i++) {
                 stuffs[i] = Integer.parseInt(st.nextToken());
             }
+
+
+
+
+
 
 
 
