@@ -1,4 +1,4 @@
-package baek;
+package baek.bronze;
 
 import java.io.BufferedReader;
 import java.io.IOException;
