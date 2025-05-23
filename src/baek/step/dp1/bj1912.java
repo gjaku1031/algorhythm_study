@@ -9,6 +9,7 @@ import java.util.StringTokenizer;
 public class bj1912 {
     static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     static StringTokenizer st;
+
     static int[] arr;
     static int n;
     static int[] dp;

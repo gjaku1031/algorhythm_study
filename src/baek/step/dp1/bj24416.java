@@ -13,7 +13,6 @@ public class bj24416 {
         int n = Integer.parseInt(br.readLine());
         fibo2(n);
         System.out.println(count1 + " " + count2);
-
     }
 
     // 재귀
