@@ -23,7 +23,6 @@ public class bj1463 {
                 dp[i] = Math.min(dp[i], dp[i / 3] + 1);
             }
         }
-
         System.out.println(dp[N]);
     }
 }
