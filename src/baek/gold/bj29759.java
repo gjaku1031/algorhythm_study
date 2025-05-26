@@ -20,7 +20,5 @@ public class bj29759 {
                 sudoku[i][j] = Integer.parseInt(st.nextToken());
             }
         }
-
-
     }
 }
