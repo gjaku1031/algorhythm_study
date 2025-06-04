@@ -31,12 +31,7 @@ public class bj16173 {
                 square[i][j].setMove(move);
             }
         }
-
         BFS();
-
-
-
-
     }
 
     static void BFS() {
