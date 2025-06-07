@@ -28,7 +28,6 @@ public class bj4779 {
             }
             sb.append('\n');
         }
-
         System.out.print(sb);
     }
 
