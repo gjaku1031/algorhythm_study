@@ -1,4 +1,4 @@
-package baek.silver;
+package baek.silver.S5;
 
 public class bj4673 {
     static int[] arr = new int[10001];
