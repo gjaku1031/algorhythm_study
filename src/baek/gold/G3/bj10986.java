@@ -1,4 +1,4 @@
-package baek.gold;
+package baek.gold.G3;
 
 import java.io.BufferedReader;
 import java.io.IOException;

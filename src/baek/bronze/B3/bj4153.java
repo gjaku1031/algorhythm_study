@@ -1,4 +1,4 @@
-package baek.bronze;
+package baek.bronze.B3;
 
 import java.util.Arrays;
 import java.util.Scanner;
