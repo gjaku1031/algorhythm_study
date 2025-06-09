@@ -28,6 +28,9 @@ public class bj24060 {
             A[i] = Integer.parseInt(st.nextToken());
         }
 
+        mergeSort(0, N - 1);
+        System.out.println(result);
+
     }
 
     static void mergeSort(int p, int r) {
@@ -35,7 +38,7 @@ public class bj24060 {
             return;
         }
 
-        if (p < result) {
+        if (p < r) {
             int q = (p + r) / 2;
             mergeSort(p, q);
             mergeSort(q + 1, r);
@@ -44,6 +47,38 @@ public class bj24060 {
     }
 
     static void merge(int p, int q, int r) {
+        int i = p;
+        int j = q + 1;
+        int t = 0;
 
+        while (i <= q && j <= r) {
+            if (A[i] <= A[j]) {
+                tmp[t++] = A[i++];
+            } else {
+                tmp[t++] = A[j++];
+            }
+        }
+
+        while (i <= q) {
+            tmp[t++] = A[i++];
+        }
+        while (j <= r) {
+            tmp[t++] = A[j++];
+        }
+
+        i = p;
+        t = 0;
+        while (i <= r) {
+            if (count >= K) {
+                return;
+            }
+            A[i] = tmp[t];
+            count++;
+            if (count == K) {
+                result = A[i];
+            }
+            i++;
+            t++;
+        }
     }
 }
