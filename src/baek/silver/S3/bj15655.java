@@ -30,13 +30,18 @@ public class bj15655 {
 
     static void BTC(int start, int level) {
         if (level == M) {
-            System.out.println(sb);
+            System.out.println(sb.toString().trim());
             return;
         }
         for (int i = start; i < N; i++) {
+            int originalLength = sb.length();
+
             sb.append(nums[i]).append(" ");
+
             BTC(i + 1, level + 1);
-            sb.delete(level, level+2);
+
+            sb.setLength(originalLength);
         }
+
     }
 }
