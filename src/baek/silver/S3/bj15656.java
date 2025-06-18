@@ -13,7 +13,8 @@ public class bj15656 {
     static StringTokenizer st;
     static int N, M;
     static int[] nums;
-    static StringBuilder sb;
+    static StringBuilder sb1;
+    static StringBuilder sb2 = new StringBuilder();
     static List<Integer> list = new ArrayList<>();
 
     public static void main(String[] args) throws IOException {
@@ -29,15 +30,16 @@ public class bj15656 {
 
         Arrays.sort(nums);
         BTC(0, 0);
+        System.out.println(sb2);
     }
 
     static void BTC(int start, int level) {
         if (level == M) {
-            sb = new StringBuilder();
+            sb1 = new StringBuilder();
             for (int i = 0; i < list.size(); i++) {
-                sb.append(list.get(i)).append(" ");
+                sb1.append(list.get(i)).append(" ");
             }
-            System.out.println(sb);
+            sb2.append(sb1.toString()).append("\n");
             return;
         }
         for (int i = 0; i < N; i++) {
@@ -45,7 +47,6 @@ public class bj15656 {
             list.add(nums[i]);
             BTC(i + 1, level + 1);
             list.remove(list.size() - 1);
-
         }
     }
 }
