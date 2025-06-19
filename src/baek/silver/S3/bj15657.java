@@ -28,6 +28,7 @@ public class bj15657 {
 
         Arrays.sort(nums);
         BTC(0, 0);
+        System.out.println(sb);
     }
 
     static void BTC(int start, int level) {
@@ -44,6 +45,6 @@ public class bj15657 {
             BTC(i, level + 1);
         }
        
-       
+    
     }
 }
