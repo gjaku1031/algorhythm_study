@@ -20,6 +20,7 @@ public class bj4948 {
             }
             System.out.println(count);
         }
+        sc.close();
     }
 
     static boolean isPrime(long n){

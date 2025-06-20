@@ -10,7 +10,7 @@ public class bj1152 {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
         int count = 0;
-        for (int i = 0; true; i++) {
+        while (true) {
             String s = st.nextToken();
             if (s != null) {
                 count++;

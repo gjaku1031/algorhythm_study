@@ -15,6 +15,9 @@ public class bj25206 {
             String str = st.nextToken();
             double grade = Double.parseDouble(st.nextToken());
             String score = st.nextToken();
+            if (i == 20) {
+                System.out.println(str);
+            }
 
             if (score.equals("P")) {
                 continue;
@@ -26,11 +29,7 @@ public class bj25206 {
     }
 
     enum Score {
-        A_PLUS(4.5), A0(4),
-        B_PLUS(3.5), B0(3),
-        C_PLUS(2.5), C0(2),
-        D_PLUS(1.5), D0(1),
-        F(0);
+        A_PLUS(4.5), A0(4), B_PLUS(3.5), B0(3), C_PLUS(2.5), C0(2), D_PLUS(1.5), D0(1), F(0);
 
         final double grd;
 

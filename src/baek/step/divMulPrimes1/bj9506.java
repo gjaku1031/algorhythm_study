@@ -12,6 +12,7 @@ public class bj9506 {
             }
             isPerfect(n);
         }
+        sc.close();
     }
 
     static void isPerfect(int n) {

@@ -50,7 +50,6 @@ public class bj11866 {
         void jose() {
             //que 에 사람 저장
             setQue();
-            int k = 1;
             while (!que.isEmpty()) {
                 setNewDiv();
                 for (int i = 0; i < div - 1; i++) {

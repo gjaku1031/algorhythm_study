@@ -18,6 +18,7 @@ public class bj5086 {
             }
 
         }
+        sc.close();
     }
 
     static void factor(int x, int y) {

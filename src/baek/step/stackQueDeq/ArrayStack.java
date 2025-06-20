@@ -21,7 +21,6 @@ public class ArrayStack {
     }
     public void arrayStackPop() {
         System.out.println(stack[top] + " Pop");
-        int pop = stack[top];
         stack[top--] = 0;
     }
     public void arrayStackPeek() {

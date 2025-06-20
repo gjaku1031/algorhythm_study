@@ -35,9 +35,4 @@ public class sw1824 {
             idx = 0;
         }
     }
-
-    static void run() {
-        int nc;
-        int nr;
-    }
 }

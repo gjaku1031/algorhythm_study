@@ -14,6 +14,7 @@ public class sw1217 {
             int result = power(a, b);
             System.out.println("#" + tc + " " + result);
         }
+        sc.close();
     }
 
     static int power(int a, int b) {

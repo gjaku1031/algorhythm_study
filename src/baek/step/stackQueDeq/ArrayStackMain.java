@@ -18,5 +18,6 @@ public class ArrayStackMain {
         stack.arrayStackPop();
         stack.arrayStackPeek();
         stack.arrayStackPop();
+        sc.close();
     }
 }

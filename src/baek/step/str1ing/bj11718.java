@@ -8,5 +8,6 @@ public class bj11718 {
             String st = sc.nextLine();
             System.out.println(st);
         }
+        sc.close();
     }
 }
