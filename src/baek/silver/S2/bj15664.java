@@ -1,0 +1,65 @@
+package baek.silver.S2;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.StringTokenizer;
+
+public class bj15664 {
+    static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    static StringBuilder result = new StringBuilder();
+    static List<Integer> list = new ArrayList<>();
+    static Set<String> set = new HashSet<>();
+    static StringTokenizer st;
+    static boolean[] visited;
+    static StringBuilder sb;
+    static int[] nums;
+    static int N, M;
+
+    public static void main(String[] args) throws IOException {
+        st = new StringTokenizer(br.readLine());
+        N = Integer.parseInt(st.nextToken());
+        M = Integer.parseInt(st.nextToken());
+
+        nums = new int[N];
+        visited = new boolean[N];
+        st = new StringTokenizer(br.readLine());
+        for (int i = 0; i < N; i++) {
+            nums[i] = Integer.parseInt(st.nextToken());
+        }
+        Arrays.sort(nums);
+        BTC(0, 0);
+        System.out.println(result);
+    }
+
+    static void BTC(int start, int level) {
+        if (level == M) {
+            sb = new StringBuilder();
+            for (int i = 0; i < M; i++) {
+                sb.append(list.get(i)).append(" ");
+            }
+            String now = sb.toString();
+            if (!set.contains(now)) {
+                set.add(now);
+                result.append(now).append("\n");
+            }
+            return;
+        }
+
+        for (int i = start; i < N; i++) {
+            if (!visited[i]) {
+                list.add(nums[i]);
+                visited[i] = true;
+                BTC(i + 1, level + 1);
+                list.remove(level);
+                visited[i] = false;
+            }
+
+        }
+    }
+}
