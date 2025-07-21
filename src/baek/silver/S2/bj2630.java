@@ -10,8 +10,6 @@ public class bj2630 {
     static StringTokenizer st;
     static int N;
     static int[][] arr;
-    static int[] dr = {0, 1, 0, 1};
-    static int[] dc = {0, 0, 1, 1};
     static int result_blue = 0;
     static int result_white = 0;
 
