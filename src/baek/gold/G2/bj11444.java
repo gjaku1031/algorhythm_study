@@ -7,7 +7,7 @@ import java.io.InputStreamReader;
 public class bj11444 {
     static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     static long N;
-    static long[] fibo = { 1, 1, 1, 0 };
+    static long[] fibo = {1, 1, 1, 0};
 
     public static void main(String[] args) throws IOException {
         N = Long.parseLong(br.readLine());
@@ -37,5 +37,3 @@ public class bj11444 {
         return next_mat;
     }
 }
-
-
