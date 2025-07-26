@@ -13,7 +13,7 @@ public class bj1753 {
     static int[] distance;
 
     static List<Node>[] graph;
-    static PriorityQueue<Node> que = new PriorityQueue<Node>((o1, o2) -> Integer.compare(o1.cost, o2.cost));
+    static PriorityQueue<Node> que = new PriorityQueue<>();
 
 
     public static void main(String[] args) throws IOException {
@@ -68,12 +68,17 @@ public class bj1753 {
         }
     }
 
-    static class Node {
+    static class Node implements Comparable<Node> {
         int idx, cost;
 
         Node(int idx, int cost) {
             this.idx = idx;
             this.cost = cost;
+        }
+
+        @Override
+        public int compareTo(Node o) {
+            return this.cost - o.cost;
         }
     }
 }
