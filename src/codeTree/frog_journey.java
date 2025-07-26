@@ -25,6 +25,7 @@ public class frog_journey {
             System.out.println(solve(i));
         }
     }
+
     static int solve(int journey_idx) {
         // 시작점으로 초기화
         PriorityQueue<State> que = new PriorityQueue<>();
