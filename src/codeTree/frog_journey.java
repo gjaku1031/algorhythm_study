@@ -9,18 +9,13 @@ import java.util.StringTokenizer;
 public class frog_journey {
     static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     static StringTokenizer st;
-
     static int[][] dir = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
-
     static int N, Q;
     static char[][] map;
     static int[][] plan;
 
-
     public static void main(String[] args) throws IOException {
         init(); // 입력
-
-        // 여행
         for (int i = 0; i < Q; i++) {
             System.out.println(solve(i));
         }
@@ -35,15 +30,12 @@ public class frog_journey {
         // 다익스트라 시작
         while (!que.isEmpty()) {
             State current = que.poll();
-
             // 도착했을 때
-            if (current.r == plan[journey_idx][2] && current.c == plan[journey_idx][3]) {
+            if (current.r == plan[journey_idx][2] && current.c == plan[journey_idx][3])
                 return current.t;
-            }
 
-            if (visited[current.r][current.c][current.power]) {
-                continue;
-            }
+            if (visited[current.r][current.c][current.power]) continue;
+
             visited[current.r][current.c][current.power] = true;
 
             // 점프력 증가
@@ -62,19 +54,13 @@ public class frog_journey {
             for (int i = 0; i < 4; i++) {
                 int nr = current.r + dir[i][0] * current.power;
                 int nc = current.c + dir[i][1] * current.power;
-
-                if (!valid(current.r, current.c, nr, nc)) {
-                    continue;
-                }
-                // 안전한 돌(.)로만 착지 가능, S나 #으로는 착지 불가
-                if (map[nr][nc] == '.') {
+                if (!valid(current.r, current.c, nr, nc)) continue;
+                if (map[nr][nc] == '.')
                     que.offer(new State(current.t + 1, nr, nc, current.power));
-                }
             }
         }
         return -1;
     }
-
     static void init() throws IOException {
         N = Integer.parseInt(br.readLine());
         map = new char[N + 1][N + 1];
@@ -84,7 +70,6 @@ public class frog_journey {
                 map[i][j] = line.charAt(j - 1);
             }
         }
-
         Q = Integer.parseInt(br.readLine());
         plan = new int[Q][4];
         for (int i = 0; i < Q; i++) {
@@ -94,7 +79,6 @@ public class frog_journey {
             }
         }
     }
-
     static class State implements Comparable<State> {
         int t, r, c, power;
 
@@ -110,7 +94,6 @@ public class frog_journey {
             return this.t - o.t;
         }
     }
-
     static boolean valid(int r, int c, int nr, int nc) {
         if (nr < 1 || nr > N || nc < 1 || nc > N) return false;
         if (r == nr) {
