@@ -49,9 +49,7 @@ public class bj1753 {
         while (!que.isEmpty()) {
             Node current_node = que.poll();
 
-            if (distance[current_node.idx] < current_node.cost) {
-                continue;
-            }
+            if (distance[current_node.idx] < current_node.cost) continue;
 
             for (int i = 0; i < graph[current_node.idx].size(); i++) {
                 Node next_node = graph[current_node.idx].get(i);
@@ -61,7 +59,7 @@ public class bj1753 {
                 }
             }
         }
-        
+
         // 출력
         for (int i = 1; i <= V; i++) {
             System.out.println(distance[i] == Integer.MAX_VALUE ? "INF" : distance[i]);
