@@ -6,16 +6,21 @@ import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
 public class bj16926 {
+    static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    static StringTokenizer st;
+    static int[][] dir = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}}; // 우, 하, 좌, 상
+    static int N, M, R;
+    static int[][] arr;
 
     public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer st = new StringTokenizer(br.readLine());
+        StringBuilder result = new StringBuilder();
+        st = new StringTokenizer(br.readLine());
 
-        int N = Integer.parseInt(st.nextToken());
-        int M = Integer.parseInt(st.nextToken());
-        int R = Integer.parseInt(st.nextToken());
+        N = Integer.parseInt(st.nextToken());
+        M = Integer.parseInt(st.nextToken());
+        R = Integer.parseInt(st.nextToken());
 
-        int[][] arr = new int[N][M];
+        arr = new int[N][M];
         for (int i = 0; i < N; i++) {
             st = new StringTokenizer(br.readLine());
             for (int j = 0; j < M; j++) {
@@ -29,40 +34,37 @@ public class bj16926 {
             int perimeter = 2 * (N - 2 * i) + 2 * (M - 2 * i) - 4;
             int rotateCount = R % perimeter;
 
-            for (int r = 0; r < rotateCount; r++) {
-                int temp = arr[i][i]; // 시작 위치 값 임시 저장
-
-                // 위쪽 변 이동 (왼쪽으로)
-                for (int j = i; j < M - i - 1; j++) {
-                    arr[i][j] = arr[i][j + 1];
-                }
-
-                // 오른쪽 변 이동 (위쪽으로)
-                for (int j = i; j < N - i - 1; j++) {
-                    arr[j][M - i - 1] = arr[j + 1][M - i - 1];
-                }
-
-                // 아래쪽 변 이동 (오른쪽으로)
-                for (int j = M - i - 1; j > i; j--) {
-                    arr[N - i - 1][j] = arr[N - i - 1][j - 1];
-                }
-
-                // 왼쪽 변 이동 (아래쪽으로)
-                for (int j = N - i - 1; j > i; j--) {
-                    arr[j][i] = arr[j - 1][i];
-                }
-
-                arr[i + 1][i] = temp;
+            for (int j = 0; j < rotateCount; j++) {
+                rotateLayer(i);
             }
         }
-
-        StringBuilder sb = new StringBuilder();
         for (int i = 0; i < N; i++) {
             for (int j = 0; j < M; j++) {
-                sb.append(arr[i][j]).append(" ");
+                result.append(arr[i][j]).append(" ");
             }
-            sb.append("\n");
+            result.append("\n");
         }
-        System.out.println(sb);
+        System.out.println(result);
+    }
+
+    public static void rotateLayer(int layer) {
+        int startX = layer;
+        int startY = layer;
+        int temp = arr[startX][startY];
+
+        int currentX = startX;
+        int currentY = startY;
+
+        for (int d = 0; d < 4; d++) {
+            while (true) {
+                int nextX = currentX + dir[d][0];
+                int nextY = currentY + dir[d][1];
+                if (nextX < layer || nextX >= N - layer || nextY < layer || nextY >= M - layer) break;
+                arr[currentX][currentY] = arr[nextX][nextY];
+                currentX = nextX;
+                currentY = nextY;
+            }
+        }
+        arr[layer + 1][layer] = temp;
     }
 }
