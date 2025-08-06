@@ -25,16 +25,16 @@ public class bj2023 {
 
         for (int i = 0; i < 5; i++) {
             if (isPrime(now * 10 + arr_odd[i])) {
-                //System.out.println("now * 10 + arr_odd[i] = " + (now * 10 + arr_odd[i]));
+                // System.out.println("now * 10 + arr_odd[i] = " + (now * 10 + arr_odd[i]));
                 BTC(now * 10 + arr_odd[i], level + 1);
             }
         }
     }
 
     static boolean isPrime(int n) {
-        
+
         for (int i = 2; i <= Math.sqrt(n); i++) {
-            if (n%i==0) {
+            if (n % i == 0) {
                 return false;
             }
         }
