@@ -25,6 +25,7 @@ public class bj10993 {
         for (int i = 0; i < height; i++) {
             Arrays.fill(map[i], ' ');
         }
+        
 
         // 초기 방향과 시작점 설정
         boolean isInitialUpward = (N % 2 == 1);
