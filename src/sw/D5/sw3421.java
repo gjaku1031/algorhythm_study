@@ -55,8 +55,10 @@ public class sw3421 {
     }
 
     static int[] buildSearchOrderByDegreeDesc() {
-        Integer[] nodes = new Integer[N];
-        for (int i = 0; i < N; i++) nodes[i] = i + 1;
+        Integer[] nodes = new Integer[N]; //Comparator를 쓸 수 있기 때문
+        for (int i = 0; i < N; i++) {
+            nodes[i] = i + 1;
+        };
 
         Arrays.sort(nodes, (u, v) -> {
             int du = graph[u].size();
@@ -79,7 +81,6 @@ public class sw3421 {
             ans++;
             return;
         }
-
         int node = order[pos];
 
         if (canSelect(node)) {
@@ -87,10 +88,8 @@ public class sw3421 {
             dfs(pos + 1);
             selected[node] = false;
         }
-
         dfs(pos + 1);
     }
-
     static boolean canSelect(int node) {
         for (int nei : graph[node]) {
             if (selected[nei]) {
