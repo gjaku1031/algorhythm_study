@@ -25,6 +25,7 @@ public class sw3421 {
         T = Integer.parseInt(br.readLine());
 
         for (int tc = 1; tc <= T; tc++) {
+            //입력
             st = new StringTokenizer(br.readLine());
             N = Integer.parseInt(st.nextToken());
             M = Integer.parseInt(st.nextToken());
@@ -40,8 +41,11 @@ public class sw3421 {
                 graph[a].add(b);
                 graph[b].add(a);
             }
+
+
             selected = new boolean[N + 1];
             ans = 0L;
+            // 정렬해서 앞에서 더 많이 가지치기
             order = buildSearchOrderByDegreeDesc();
 
             dfs(0);
