@@ -1,144 +1,66 @@
 package baek.gold.G4;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.Arrays;
-import java.util.StringTokenizer;
+import java.io.*;
+import java.util.*;
 
 public class bj17281 {
-    static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-    static StringTokenizer st;
-
-    static int[][] baseball;
-    static int[] inning = new int[10];
-    static int N;
-
+    static int[][] game;
+    static int[] order = new int[10];
+    static int N, maxScore;
     static boolean[] visited = new boolean[10];
-    static int result = Integer.MIN_VALUE;
 
     public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         N = Integer.parseInt(br.readLine());
-        baseball = new int[N][10];
-
+        game = new int[N][10];
         for (int i = 0; i < N; i++) {
-            st = new StringTokenizer(br.readLine());
+            StringTokenizer st = new StringTokenizer(br.readLine());
             for (int j = 1; j <= 9; j++) {
-                baseball[i][j] = Integer.parseInt(st.nextToken());
+                game[i][j] = Integer.parseInt(st.nextToken());
             }
         }
-        inning[4] = 1;
-        DFS(1);
-        System.out.println(result);
+        order[4] = 1;
+        dfs(1);
+        System.out.println(maxScore);
     }
 
     static int play() {
-        int score = 0;
-        int out_count = 0;
-        int idx = 1;
-
+        int score = 0, out = 0, idx = 1;
         int[] base = new int[4];
         for (int i = 0; i < N; i++) {
-            while (out_count < 3) {
-                if (baseball[i][inning[idx]] == 1) {
-                    // 3루에 사람 있으면 홈인 + 점수 up
-                    if (base[3] == 1) {
-                        score += 1;
-                        base[3] = 0;
-                    }
-
-                    // 2루에 사람 있으면 옮기기
-                    if (base[2] == 1) {
-                        base[3] = 1;
-                        base[2] = 0;
-                    }
-
-                    // 1루에 사람 있으면 옮기기
-                    if (base[1] == 1) {
-                        base[2] = 1;
-                        base[1] = 0;
-                    }
-                    // 1루에 주자 ㄱ
-                    base[1] = 1;
-                } else if (baseball[i][inning[idx]] == 2) {
-                    if (base[3] == 1) {
-                        score += 1;
-                        base[3] = 0;
-                    }
-
-                    // 2루에 사람 있으면 옮기기
-                    if (base[2] == 1) {
-                        score += 1;
-                        base[2] = 0;
-                    }
-
-                    // 1루에 사람 있으면 옮기기
-                    if (base[1] == 1) {
-                        base[3] = 1;
-                        base[1] = 0;
-                    }
-                    // 2루에 주자 ㄱ
-                    base[2] = 1;
-
-                } else if (baseball[i][inning[idx]] == 3) {
-
-                    if (base[3] == 1) {
-                        score += 1;
-                        base[3] = 0;
-                    }
-
-                    // 2루에 사람 있으면 옮기기
-                    if (base[2] == 1) {
-                        score += 1;
-                        base[2] = 0;
-                    }
-
-                    // 1루에 사람 있으면 옮기기
-                    if (base[1] == 1) {
-                        score += 1;
-                        base[1] = 0;
-                    }
-                    base[3] = 1;
-
-                } else if (baseball[i][inning[idx]] == 4) {
-                    // 홈런
-                    int count = 0;
-                    for (int j = 1; j < 4; j++) {
-                        if (base[j] == 1) {
-                            count++;
-                        }
-                    }
-                    score += (count + 1);
+            while (out < 3) {
+                int hit = game[i][order[idx]];
+                if (hit == 0) out++;
+                else if (hit == 4) {
+                    score += base[1] + base[2] + base[3] + 1;
                     Arrays.fill(base, 0);
                 } else {
-                    out_count++;
+                    for (int j = 3; j >= 1; j--) {
+                        if (base[j] == 1) {
+                            if (j + hit >= 4) score++;
+                            else base[j + hit] = 1;
+                            base[j] = 0;
+                        }
+                    }
+                    if (hit < 4) base[hit] = 1;
                 }
-                idx = (idx + 1) % 10;
-                if (idx == 0) idx++;
+                idx = idx % 9 + 1;
             }
             Arrays.fill(base, 0);
-            out_count = 0;
+            out = 0;
         }
         return score;
     }
 
-    static void DFS(int level) {
+    static void dfs(int level) {
         if (level == 10) {
-            int now_score = play();
-            result = Math.max(result, now_score);
+            maxScore = Math.max(maxScore, play());
             return;
         }
-
         for (int i = 2; i <= 9; i++) {
             if (!visited[i]) {
                 visited[i] = true;
-                inning[level] = i;
-
-                if (level == 3) {
-                    DFS(level + 2);
-                } else {
-                    DFS(level + 1);
-                }
+                order[level] = i;
+                dfs(level == 3 ? level + 2 : level + 1);
                 visited[i] = false;
             }
         }
