@@ -20,25 +20,33 @@ public class sw2805 {
                 }
             }
 
-            int sum = 0;
-            int mid = N / 2;
-
-            for (int i = 0; i < N; i++) {
-                int startCol, endCol;
-                if (i <= mid) {
-                    startCol = mid - i;
-                    endCol = mid + i;
-                } else {
-                    int distFromBottomEdge = (N - 1) - i;
-                    startCol = mid - distFromBottomEdge;
-                    endCol = mid + distFromBottomEdge;
-                }
-
-                for (int j = startCol; j <= endCol; j++) {
-                    sum += farm[i][j];
-                }
-            }
-            System.out.println("#" + tc + " " + sum);
+            int sum = getSum(N, farm);
+            System.out.println("#" + tc + " " + sum); // 결과 출력
         }
+    }
+
+    private static int getSum(int N, int[][] farm) {
+        int sum = 0;
+        int mid = N / 2;
+
+        for (int i = 0; i < N; i++) {
+            int startCol, endCol;
+            if (i <= mid) {
+                // 마름모 상반부: 중심에서 멀어질수록 범위가 넓어짐
+                startCol = mid - i;
+                endCol = mid + i;
+            } else {
+                // 마름모 하반부: 중심에서 멀어질수록 범위가 좁아짐
+                int distFromBottomEdge = (N - 1) - i; // 아래 끝에서의 거리
+                startCol = mid - distFromBottomEdge;
+                endCol = mid + distFromBottomEdge;
+            }
+
+            // 해당 행의 마름모 범위 내 농작물 수확
+            for (int j = startCol; j <= endCol; j++) {
+                sum += farm[i][j];
+            }
+        }
+        return sum;
     }
 }
