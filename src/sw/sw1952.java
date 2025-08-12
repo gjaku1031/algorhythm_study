@@ -32,13 +32,13 @@ public class sw1952 {
             }
 
             for (int i = 1; i <= 12; i++) {
-                dp[i] = dp[i-1] + Math.min(cost[0] * plan[i-1], cost[1]);
-                
+                dp[i] = dp[i - 1] + Math.min(cost[0] * plan[i - 1], cost[1]);
+
                 if (i >= 3) {
-                    dp[i] = Math.min(dp[i], dp[i-3] + cost[2]);
+                    dp[i] = Math.min(dp[i], dp[i - 3] + cost[2]);
                 }
             }
-            
+
             int result = Math.min(dp[12], cost[3]);
             System.out.println("#" + tc + " " + result);
         }
