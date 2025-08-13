@@ -6,52 +6,48 @@ import java.io.InputStreamReader;
 
 public class bj9663 {
     static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-    static boolean[][] chess;
+    // 1차원 배열로 퀸의 위치 저장 - arr[i] = j는 i행 j열에 퀸이 있다는 의미
+    static int[] queens;
     static int count = 0;
     static int N;
 
     public static void main(String[] args) throws IOException {
         N = Integer.parseInt(br.readLine());
-        chess = new boolean[N][N];
-        BTC(0, 0);
+        queens = new int[N];
+        nQueen(0);
         System.out.println(count);
-
     }
-
-    static void BTC(int start, int depth) {
+    
+    static void nQueen(int depth) {
         if (depth == N) {
             count++;
             return;
         }
-
+        
+        // depth번째 행의 각 열에 퀸을 놓아보기
         for (int i = 0; i < N; i++) {
-            if (noQueen(start, i)) {
-                chess[start][i] = true;
-                BTC(start + 1, depth + 1);
-                chess[start][i] = false;
+            queens[depth] = i;
+            
+            // 현재 위치에 퀸을 놓을 수 있는지 체크
+            if (isValid(depth)) {
+                nQueen(depth + 1);
             }
         }
     }
-
-    // 해당 좌표에 퀸을 놓을 수 있는지 여부
-    static boolean noQueen(int x, int y) {
-        for (int i = 0; i < N; i++) { // 가로 세로 검사
-            if (chess[x][i] || chess[i][y]) {
+    
+    static boolean isValid(int depth) {
+        for (int i = 0; i < depth; i++) {
+            // 같은 열에 있는지 체크
+            if (queens[depth] == queens[i]) {
+                return false;
+            }
+            
+            // 대각선에 있는지 체크
+            // 행의 차이와 열의 차이가 같으면 대각선상에 위치
+            if (Math.abs(queens[depth] - queens[i]) == Math.abs(depth - i)) {
                 return false;
             }
         }
-
-        for (int i = 1; i < N; i++) { // 1부터 시작해 대각선으로 이동
-            if (valid(x - i, y - i) && chess[x - i][y - i]) return false;
-            if (valid(x - i, y + i) && chess[x - i][y + i]) return false;
-            if (valid(x + i, y - i) && chess[x + i][y - i]) return false;
-            if (valid(x + i, y + i) && chess[x + i][y + i]) return false;
-        }
         return true;
-    }
-
-    // 체스판 안에 들어있는지
-    static boolean valid(int x, int y) {
-        return x >= 0 && y >= 0 && x < N && y < N;
     }
 }
