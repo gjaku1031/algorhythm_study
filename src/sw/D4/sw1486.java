@@ -16,11 +16,24 @@ public class sw1486 {
     static Integer[] stuffs;
 
     static int sum = 0;
+    static int answer;
+
+    static void dfs(int idx) {
+        if (sum >= B) {
+            if (sum < answer) answer = sum;
+            return;
+        }
+        if (idx == N) return;
+        if (sum >= answer) return;
+        sum += stuffs[idx];
+        dfs(idx + 1);
+        sum -= stuffs[idx];
+        dfs(idx + 1);
+    }
 
     public static void main(String[] args) throws IOException {
         T = Integer.parseInt(br.readLine());
         for (int tc = 1; tc <= T; tc++) {
-            // 입력
             st = new StringTokenizer(br.readLine());
             N = Integer.parseInt(st.nextToken());
             B = Integer.parseInt(st.nextToken());
@@ -31,22 +44,13 @@ public class sw1486 {
                 stuffs[i] = Integer.parseInt(st.nextToken());
             }
 
-
             Arrays.sort(stuffs, Collections.reverseOrder());
+            answer = Integer.MAX_VALUE;
+            sum = 0;
+            dfs(0);
 
-            System.out.println("#" + tc + " ");
+            System.out.println("#" + tc + " " + (answer - B));
         }
-    }
-
-    static void dfs() {
-        if (sum == B) {
-            return;
-        }
-
-        for (int i = 0; i < N; i++) {
-
-        }
-
     }
 
 }
