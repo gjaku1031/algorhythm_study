@@ -15,6 +15,7 @@ public class bj3109 {
     static int R, C;
     static char[][] map;
 
+    static boolean[][] visited;
     static int result = 0;
 
 
@@ -25,14 +26,14 @@ public class bj3109 {
         C = Integer.parseInt(st.nextToken());
 
         map = new char[R][C];
-
         for (int i = 0; i < R; i++) {
             String str = br.readLine();
             for (int j = 0; j < C; j++) {
                 map[i][j] = str.charAt(j);
             }
         }
-        
+
+        visited = new boolean[R][C];
         for (int i = 0; i < R; i++) {
             bread(i, 1);
         }
