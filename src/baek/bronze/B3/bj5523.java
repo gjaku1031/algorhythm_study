@@ -24,9 +24,8 @@ public class bj5523 {
                 winA++;
             } else if (a < b) {
                 winB++;
+                System.out.println(winA + " " + winB);
             }
         }
-        System.out.println(winA + " " + winB);
     }
-
 }
