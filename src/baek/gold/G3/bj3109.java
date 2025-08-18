@@ -14,8 +14,8 @@ public class bj3109 {
 
     static int R, C;
     static char[][] map;
-
     static boolean[][] visited;
+
     static int result = 0;
 
 
@@ -26,32 +26,38 @@ public class bj3109 {
         C = Integer.parseInt(st.nextToken());
 
         map = new char[R][C];
+        visited = new boolean[R][C];
+
         for (int i = 0; i < R; i++) {
             String str = br.readLine();
             for (int j = 0; j < C; j++) {
                 map[i][j] = str.charAt(j);
             }
         }
-
-        visited = new boolean[R][C];
         for (int i = 0; i < R; i++) {
-            bread(i, 1);
+            dfs(i, 0);
         }
-
-
-
+        System.out.println(result);
     }
 
-    static void bread(int idx, int c) {
-        if (c == C) {
+    static boolean dfs(int r, int c) {
+        if (c == C - 1) {
             result++;
-            return;
+            return true;
         }
 
-        for (int i = 0; i < C; i++) {
+        for (int[] d : dir) {
+            int nr = r + d[0];
+            int nc = c + d[1];
 
+            if (!valid(nr, nc)) continue;// 격자 안인지 확인
+            if (map[nr][nc] == 'x') continue;// 건물 있는지 확인
+            if (visited[nr][nc]) continue;// 이미 가스관 있는지 확인
+
+            visited[nr][nc] = true;
+            if (dfs(nr, nc)) return true;
         }
-        
+        return false;
     }
 
     static boolean valid(int r, int c) {
