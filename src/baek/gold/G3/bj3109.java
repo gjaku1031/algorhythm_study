@@ -45,7 +45,6 @@ public class bj3109 {
             result++;
             return true;
         }
-
         for (int[] d : dir) {
             int nr = r + d[0];
             int nc = c + d[1];
