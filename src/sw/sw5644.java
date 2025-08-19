@@ -23,7 +23,6 @@ public class sw5644 {
     static int sum;
     static int A_x;
     static int A_y;
-    ;
 
     static int B_x;
     static int B_y;
@@ -84,12 +83,8 @@ public class sw5644 {
                     B_x += dir[arr_B[i]][0];
                     B_y += dir[arr_B[i]][1];
                 }
-//                System.out.println("i = " + i);
-//                System.out.println("A_x = " + A_x);
-//                System.out.println("A_y = " + A_y);
-//                System.out.println("B_x = " + B_x);
-//                System.out.println("B_y = " + B_y);
-                if (map[A_y][A_x].isEmpty()) { //
+
+                if (map[A_y][A_x].isEmpty()) {
                     if (!map[B_y][B_x].isEmpty()) {
                         int max = Integer.MIN_VALUE;
                         for (int j = 0; j < map[B_y][B_x].size(); j++) {
@@ -154,12 +149,3 @@ public class sw5644 {
         }
     }
 }
-/*
-5
-20 3
-2 2 3 2 2 2 2 3 3 4 4 3 2 2 3 3 3 2 2 3
-4 4 1 4 4 1 4 4 1 1 1 4 1 4 3 3 3 3 3 3
-4 4 1 100
-7 10 3 40
-6 3 2 70
- */
