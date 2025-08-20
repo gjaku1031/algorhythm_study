@@ -49,7 +49,6 @@ public class bj10026 {
             }
         }
         System.out.println(normal + " " + abnormal);
-
     }
 
     static void dfs(int r, int c) {
