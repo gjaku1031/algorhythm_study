@@ -13,6 +13,7 @@ public class bj2252 {
     static List<Integer>[] graph;
     static int[] indegree;
 
+
     public static void main(String[] args) throws IOException {
         st = new StringTokenizer(br.readLine());
         N = Integer.parseInt(st.nextToken());
