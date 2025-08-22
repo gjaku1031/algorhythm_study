@@ -40,7 +40,6 @@ public class bj17135 {
                 }
             }
         }
-
         System.out.println(answer);
     }
 
