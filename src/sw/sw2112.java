@@ -3,8 +3,6 @@ package sw;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.StringTokenizer;
 
 public class sw2112 {
@@ -15,9 +13,7 @@ public class sw2112 {
     static int D, W, K;
     static int[][] film;
 
-    static int result;
-    static List<List<Integer>> res;
-    static boolean success = false;
+    static int best; // 최소 약품 수
 
     public static void main(String[] args) throws IOException {
         T = Integer.parseInt(br.readLine());
@@ -36,13 +32,74 @@ public class sw2112 {
                 }
             }
 
-            result = 0;
-            int len = 1;
-            System.out.println("#" + tc + " " + result);
+            if (isPass()) {
+                best = 0;
+            } else {
+                best = K;
+                dfs(1, 0);
+            }
+            System.out.println("#" + tc + " " + best);
         }
     }
 
-    static void dfs(int start) {
+    static void dfs(int row, int used) {
+        if (used >= best) return;
+        if (row > D) {
+            if (isPass()) {
+                best = Math.min(best, used);
 
+            }
+            return;
+        }
+        // 1) r행 그대로
+        dfs(row + 1, used);
+
+        // 현재 행 백업 (값 복원용)
+        int[] backup = film[row].clone();
+
+        // 2) r행 전부 0
+        for (int j = 1; j <= W; j++) film[row][j] = 0;
+        dfs(row + 1, used + 1);
+        // 복원
+        for (int j = 1; j <= W; j++) film[row][j] = backup[j];
+
+        // 3) r행 전부 1
+        for (int j = 1; j <= W; j++) film[row][j] = 1;
+        dfs(row + 1, used + 1);
+        // 복원
+        for (int j = 1; j <= W; j++) film[row][j] = backup[j];
+    }
+
+    static boolean isPass() {
+        for (int w = 1; w <= W; w++) {
+            if (!check(w)) return false;
+        }
+        return true;
+    }
+
+    static boolean check(int w) {
+        if (K == 1) return true;
+        int run = 1;
+        int past = film[1][w];
+        for (int i = 2; i <= D; i++) {
+            if (film[i][w] == past) {
+                run++;
+            } else {
+                run = 1;
+                past = film[i][w];
+            }
+            if (run >= K) return true;
+        }
+        return false;
     }
 }
+/*
+10
+6 8 3
+0 0 1 0 1 0 0 1
+0 1 0 0 0 1 1 1
+0 1 1 1 0 0 0 0
+1 1 1 1 0 0 0 1
+0 1 1 0 1 0 0 1
+1 0 1 0 1 1 0 1
+ */
