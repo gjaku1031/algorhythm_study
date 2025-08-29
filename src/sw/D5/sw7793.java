@@ -103,11 +103,8 @@ public class sw7793 {
                     }
                 }
             }
-
-
         }
     }
-
     static boolean valid(int r, int c) {
         return 0 <= r && r < N && 0 <= c && c < M;
     }
