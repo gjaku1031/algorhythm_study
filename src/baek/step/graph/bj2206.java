@@ -5,94 +5,76 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayDeque;
 import java.util.Deque;
+import java.util.Queue;
 import java.util.StringTokenizer;
 
 public class bj2206 {
     static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-    static Deque<Unit> deq = new ArrayDeque<>();
-    static int[] dx = {1, 0, -1, 0};
-    static int[] dy = {0, 1, 0, -1};
     static StringTokenizer st;
-    static int[][] visited;
-    static int[][] map;
+
     static int N, M;
+    static int[][] map;
+
+    static boolean[][][] visited;
+    static int[][] dir = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
 
     public static void main(String[] args) throws IOException {
         st = new StringTokenizer(br.readLine());
         N = Integer.parseInt(st.nextToken());
         M = Integer.parseInt(st.nextToken());
-
-        visited = new int[N][M];
         map = new int[N][M];
-
         for (int i = 0; i < N; i++) {
             String line = br.readLine();
             for (int j = 0; j < M; j++) {
                 map[i][j] = Integer.parseInt(Character.toString(line.charAt(j)));
             }
         }
-        visited[0][0] = 1;
-        deq.addLast(new Unit(0, 0, true));
-        BFS();
+        visited = new boolean[N][M][2];
+        System.out.println(bfs());
+
     }
 
-    public static class Unit {
-        int x;
-        int y;
-        boolean wall = false;
+    static int bfs() {
+        Queue<int[]> queue = new ArrayDeque<>();
+        queue.add(new int[]{0, 0, 0});
+        visited[0][0][0] = true;
 
-        public Unit(int x, int y, boolean wall) {
-            this.x = x;
-            this.y = y;
-            this.wall = wall;
-        }
+        int count = 1;
 
-        public int getX() {
-            return x;
-        }
+        while (!queue.isEmpty()) {
+            int qSize = queue.size();
+            for (int i = 0; i < qSize; i++) {
 
-        public int getY() {
-            return y;
-        }
+                int[] now = queue.poll();
+                int r = now[0], c = now[1], isBroken = now[2];
 
-        public boolean canDes() {
-            return wall;
+                if(r==N-1 && c ==M-1) return count;
+
+                for (int d = 0; d < 4; d++) {
+                    int nr = r + dir[d][0];
+                    int nc = c + dir[d][1];
+
+                    if (!valid(nr, nc)) continue;
+
+                    if (map[nr][nc] == 0) {
+                        if (!visited[nr][nc][isBroken]) {
+                            visited[nr][nc][isBroken] = true;
+                            queue.add(new int[]{nr, nc, isBroken});
+                        }
+                    } else {
+                        if (isBroken == 0 && !visited[nr][nc][1]) {
+                            visited[nr][nc][1] = true;
+                            queue.add(new int[]{nr, nc, 1});
+                        }
+                    }
+                }
+            }
+            count++;
         }
+        return -1;
     }
 
-    static void BFS() {
-        while (!deq.isEmpty()) {
-            Unit now = deq.pollFirst();
-            if (now.getX() == N - 1 && now.getY() == M - 1) {
-                System.out.println(visited[N - 1][M - 1]);
-                return;
-            }
-
-            for (int i = 0; i < 4; i++) {
-                int nextX = now.getX() + dx[i];
-                int nextY = now.getY() + dy[i];
-
-                if (nextX < 0 || nextY < 0 || nextX >= N || nextY >= M) {
-                    continue;
-                }
-
-                if (visited[now.getX()][now.getY()] <= visited[nextX][nextY]) {
-                    continue;
-                }
-
-                if (now.canDes() == false && map[nextX][nextY] == 1) { //부실 수 없을 때
-                    continue;
-                }
-                if (now.canDes() == true && map[nextX][nextY] == 1) {
-                    visited[nextX][nextY] = visited[now.getX()][now.getY()] + 1;
-                    deq.addLast(new Unit(nextX, nextY, false));
-                }
-                if (map[nextX][nextY] == 0) {
-                    visited[nextX][nextY] = visited[now.getX()][now.getY()] + 1;
-                    deq.addLast(new Unit(nextX, nextY, now.canDes()));
-                }
-            }
-        }
-        System.out.println(-1);
+    static boolean valid(int r, int c) {
+        return 0 <= r && r < N && 0 <= c && c < M;
     }
 }
