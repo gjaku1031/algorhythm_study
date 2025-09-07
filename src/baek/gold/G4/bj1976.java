@@ -14,7 +14,9 @@ public class bj1976 {
     public static void main(String[] args) throws IOException {
         N = Integer.parseInt(br.readLine());
         M = Integer.parseInt(br.readLine());
+
         DSU dsu = new DSU();
+
         for (int i = 1; i <= N; i++) {
             st = new StringTokenizer(br.readLine());
             for (int j = 1; j <= N; j++) {
@@ -23,22 +25,22 @@ public class bj1976 {
             }
         }
 
-        st = new StringTokenizer(br.readLine());
-        String result = "YES";
-        int now = 0;
-        for (int i = 1; i <= M; i++) {
-            int root = Integer.parseInt(st.nextToken());
-            if (now == 0) {
-                now = dsu.find(root);
-            } else {
-                if (now != dsu.find(root)) {
-                    result = "NO";
-                    break;
-                }
+        int firstRoot = -1;
+        boolean ok = true;
+        int read = 0;
+        while (read < M) {
+            if (st == null || !st.hasMoreTokens()) {
+                st = new StringTokenizer(br.readLine());
+                continue;
             }
+            int city = Integer.parseInt(st.nextToken());
+            int r = dsu.find(city);
+            if (firstRoot == -1) firstRoot = r;
+            else if (firstRoot != r) { ok = false; break; }
+            read++;
         }
-        if (now == 0) result = "NO";
-        System.out.println(result);
+
+        System.out.println(ok ? "YES" : "NO");
     }
 
     static class DSU {
@@ -62,11 +64,10 @@ public class bj1976 {
             int ra = find(a), rb = find(b);
             if (ra == rb) return false;
 
-            if (ra < rb) {
-                int temp = ra;
-                ra = rb;
-                rb = temp;
+            if (size[ra] < size[rb]) {
+                int t = ra; ra = rb; rb = t;
             }
+
             parent[rb] = ra;
             size[ra] += size[rb];
             return true;
