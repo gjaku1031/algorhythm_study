@@ -27,7 +27,7 @@ public class bj3055 {
         C = Integer.parseInt(st.nextToken());
 
         map = new char[R][C];
-        flood = new ArrayList<>();
+        flood = new LinkedList<>();
         for (int i = 0; i < R; i++) {
             String line = br.readLine();
             for (int j = 0; j < C; j++) {
@@ -45,14 +45,15 @@ public class bj3055 {
         Queue<int[]> queue = new ArrayDeque<>();
         visited = new boolean[R][C];
         queue.add(start);
-
         while (!queue.isEmpty()) {
             count++;
 
             // 홍수남
             int size = flood.size();
+
             for (int s = 0; s < size; s++) {
-                int[] crr = flood.get(s);
+                int[] crr = flood.get(0);
+                flood.remove(0);
                 for (int d = 0; d < 4; d++) {
                     int nr = crr[0] + dir[d][0];
                     int nc = crr[1] + dir[d][1];
