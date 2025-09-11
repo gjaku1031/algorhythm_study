@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.StringTokenizer;
 
 public class bj12015 {
-    static BufferedReader br = ne=[]w BufferedReader(new InputStreamReader(System.in));
+    static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     static StringTokenizer st;
 
     static int N;
@@ -40,7 +40,7 @@ public class bj12015 {
 }
 /**
  * idx = -(insertionPoint) - 1
- * insertionPoint = -(-idx - 1)
+ * insertionPoint = -idx - 1
  [10, 20, 30]
 
  x = 25
