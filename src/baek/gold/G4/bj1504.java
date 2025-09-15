@@ -9,13 +9,25 @@ public class bj1504 {
 
     static class Edge {
         int to, w;
-        Edge(int to, int w) { this.to = to; this.w = w; }
+
+        Edge(int to, int w) {
+            this.to = to;
+            this.w = w;
+        }
     }
 
     static class State implements Comparable<State> {
-        int v; long d;
-        State(int v, long d) { this.v = v; this.d = d; }
-        public int compareTo(State o) { return Long.compare(this.d, o.d); }
+        int v;
+        long d;
+
+        State(int v, long d) {
+            this.v = v;
+            this.d = d;
+        }
+
+        public int compareTo(State o) {
+            return Long.compare(this.d, o.d);
+        }
     }
 
     static int N, E;
@@ -66,7 +78,7 @@ public class bj1504 {
         int v1 = Integer.parseInt(st.nextToken());
         int v2 = Integer.parseInt(st.nextToken());
 
-        long[] d1  = dijkstra(1);
+        long[] d1 = dijkstra(1);
         long[] dv1 = dijkstra(v1);
         long[] dv2 = dijkstra(v2);
 
