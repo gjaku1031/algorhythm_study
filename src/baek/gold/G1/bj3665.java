@@ -115,5 +115,4 @@ public class bj3665 {
             System.out.println(sb.toString().trim());
         }
     }
-
 }
