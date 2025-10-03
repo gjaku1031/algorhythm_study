@@ -10,6 +10,7 @@ public class bj5532 {
 
         int L = Integer.parseInt(br.readLine()); 
         int A = Integer.parseInt(br.readLine()); 
+        int B = Integer.parseInt(br.readLine());
         int C = Integer.parseInt(br.readLine());
         int D = Integer.parseInt(br.readLine()); 
 
